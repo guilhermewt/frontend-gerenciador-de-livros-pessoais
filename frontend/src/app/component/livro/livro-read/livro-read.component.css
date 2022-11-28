@@ -1,0 +1,39 @@
+.livro{
+    border:1px solid red;
+    padding-left: 33px;
+}
+
+.livro-card{
+    border: 1px solid red;
+    width: 200px;
+    min-height: 213px;
+    margin-right: 30px;
+    margin-top: 10px;
+    float: left;
+    text-align: center;
+    position: relative;
+}
+
+.buttons{
+    position: absolute;
+    bottom: 0px;
+}
+
+.buttons > button{
+    margin-right: 10px;
+    margin-top: 6px;
+    margin-bottom: -6;
+    font-size: 12px;
+}
+
+.img-livro{
+    width:100px;
+     height:90px;
+     margin: 0;
+}
+
+/*=======tipografia=======*/
+.livro-card h3{
+    margin: 0px;
+    font-size: 14px;
+}

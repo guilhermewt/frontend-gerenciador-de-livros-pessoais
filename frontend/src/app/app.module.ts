@@ -6,11 +6,15 @@ import { AppComponent } from './app.component';
 import { DataTablesModule } from "angular-datatables";
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './component/template/header/header.component';
+import { LivroCrudComponent } from './views/livro-crud/livro-crud.component';
+import { LivroReadComponent } from './component/livro/livro-read/livro-read.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    LivroCrudComponent,
+    LivroReadComponent
   ],
   imports: [
     BrowserModule,
