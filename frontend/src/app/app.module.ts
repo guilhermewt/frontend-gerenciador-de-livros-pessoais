@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './component/template/header/header.component';
 import { LivroCrudComponent } from './views/livro-crud/livro-crud.component';
 import { LivroReadComponent } from './component/livro/livro-read/livro-read.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { LivroReadComponent } from './component/livro/livro-read/livro-read.comp
     BrowserModule,
     AppRoutingModule,
     DataTablesModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

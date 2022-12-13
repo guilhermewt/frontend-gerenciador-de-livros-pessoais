@@ -10,14 +10,18 @@ import { LivroService } from '../livro.service';
 export class LivroReadComponent implements OnInit{
 
 
-  livro!:Livro[]
-
   constructor(private livroService:LivroService) { }
 
+  page:number = 1;
+  livro!:Livro[];
+  itemsPerPage:number =12;
+  totalProduct:any;
+  
   ngOnInit(): void {
-     this.livroService.read().subscribe(livro => {
-      this.livro = livro
-      console.log(livro)
+  
+     this.livroService.read().subscribe((livro) => {
+      this.livro = livro;
+      this.totalProduct = livro.length;
     })
   }
 

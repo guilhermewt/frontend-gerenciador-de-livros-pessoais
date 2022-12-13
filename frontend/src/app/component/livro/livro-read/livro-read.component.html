@@ -1,75 +1,83 @@
-<div class="container livro">
+<!-- 
+<div class="container" style="border:1px solid blue">
 
-    <!--criamos views livro read é um pouco do template
+    criamos views livro read é um pouco do template
         criamos o json do livro
         criamos os cards dos livros agora é fazer a conexao com a api
-    -->
-    <div class="livro-card" *ngFor="let livro of livro">
+        conseguimos colocar o angular datatables mas nao ficou bom parece guambiarra
+        colocamos o ngx-pagination deu uns errors mas instalamos de novo e foi
+        dei uma arrumada no layout com as bordas
+        alinhamos tudo agora falta alinhar quando diminuir a tela usar o grid
+        
+    
+    
 
-        <img src="assets/img/livro.png" alt="" class="img-livro">
-        <h3>{{ livro.titulo }}</h3>
+        <div class="livro">   
+            <div class="row">
+               
+               
+               
+                <div class="row livro-card" *ngFor="let Livro of livro | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
 
-        <div class="buttons">
-            <button type="button" class="btn btn-warning">editar</button>
-            <button type="button" class="btn btn-danger">remover</button>
-            <button type="button" class="btn btn-primary">emprestar</button>
+                    <img src="assets/img/livro.png" alt="" class="img-livro">
+                    <h3>{{ Livro.titulo }}</h3> 
+
+                    <div class="buttons">
+                        <button type="button" class="btn btn-warning">editar</button>
+                        <button type="button" class="btn btn-danger">remover</button>
+                        <button type="button" class="btn btn-primary">emprestar</button>
+                    </div>
+            
+                </div>
+
+            
+            
+            </div>
+        </div>   
+    
+        <div class="text-center">
+            <pagination-controls (pageChange)="page = $event"></pagination-controls>
         </div>
+
+</div>
+ -->
+
+ <div class="container">
+    <div class="estrutura">
+       
+        <div class="livro text-center" *ngFor="let Livro of livro | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
+            <div class="img-livro">
+                <img src="assets/img/book.png" alt="">
+            </div>
+            
+            <div class="titulo">            
+                <h3>{{ Livro.titulo }}</h3> 
+            </div>     
+            
+            <div class="buttons">
+                <button class="btn btn-warning btn-sm">editar</button>
+                <button class="btn btn-danger btn-sm">remover</button>
+                <button class="btn btn-primary btn-sm">emprestar</button>
+            </div>
+
+        </div>
+
     </div>
     
-        <!-- <div class="livro-card">
+    <div class="text-center paginacao">
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </div>
+ </div>
 
-            <img src="assets/img/livro.png" alt="" class="img-livro">
-            <h3>Os hábitos secretos dos gênios: Aprenda a identificar e lapidar suas habilidades</h3>
-
-            <div class="buttons">
-                <button type="button" class="btn btn-warning">editar</button>
-                <button type="button" class="btn btn-danger">remover</button>
-                <button type="button" class="btn btn-primary">emprestar</button>
-            </div>
-        </div>
-
-        <div class="livro-card">
-            
-            <img src="assets/img/livro.png" alt="" class="img-livro">
-            <h3>Os hábitos</h3>
-            
-            <div class="buttons">
-                <button type="button" class="btn btn-warning">editar</button>
-                <button type="button" class="btn btn-danger">remover</button>
-                <button type="button" class="btn btn-primary">emprestar</button>
-            </div>
-        </div>
-
-        <div class="livro-card">
-            
-        </div>
-
-        <div class="livro-card">
-            
-        </div>
-
-        <div class="livro-card">
-            
-        </div>
-
-        <div class="livro-card">
-            
-        </div>
-
-        <div class="livro-card">
-            
-        </div>
-
-        <div class="livro-card">
-            
-        </div>
-
-        <div class="livro-card">
-            
-        </div>
-
-        <div class="livro-card">
-            
-        </div>
+ <!-- tentar alinhar com bootstrap 4 
+      alinhamento feito inclusive responsivel,arrumar botoes e arrumar pagination para sempre ficar em baixo
+      alinhamento feito
+      mecher na resposividade abaixando a imagem ok
+      arrumar o header    
     -->
-</div>
+
+    <!--
+        aprendi a alinhar elementos dentro da div e fora
+        dentro: colocar display flex e align itemns
+        fora: flex direction,justify,flex-flow
+    -->
