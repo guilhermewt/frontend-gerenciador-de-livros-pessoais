@@ -5,24 +5,28 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DataTablesModule } from "angular-datatables";
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './component/template/header/header.component';
 import { LivroCrudComponent } from './views/livro-crud/livro-crud.component';
 import { LivroReadComponent } from './component/livro/livro-read/livro-read.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { LivroCreateComponent } from './component/livro/livro-create/livro-create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LivroCrudComponent,
-    LivroReadComponent
+    LivroReadComponent,
+    LivroCreateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     DataTablesModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule
     
   ],
   providers: [],

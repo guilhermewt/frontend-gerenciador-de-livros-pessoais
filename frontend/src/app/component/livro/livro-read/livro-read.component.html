@@ -1,53 +1,11 @@
-<!-- 
-<div class="container" style="border:1px solid blue">
-
-    criamos views livro read é um pouco do template
-        criamos o json do livro
-        criamos os cards dos livros agora é fazer a conexao com a api
-        conseguimos colocar o angular datatables mas nao ficou bom parece guambiarra
-        colocamos o ngx-pagination deu uns errors mas instalamos de novo e foi
-        dei uma arrumada no layout com as bordas
-        alinhamos tudo agora falta alinhar quando diminuir a tela usar o grid
-        
-    
-    
-
-        <div class="livro">   
-            <div class="row">
-               
-               
-               
-                <div class="row livro-card" *ngFor="let Livro of livro | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
-
-                    <img src="assets/img/livro.png" alt="" class="img-livro">
-                    <h3>{{ Livro.titulo }}</h3> 
-
-                    <div class="buttons">
-                        <button type="button" class="btn btn-warning">editar</button>
-                        <button type="button" class="btn btn-danger">remover</button>
-                        <button type="button" class="btn btn-primary">emprestar</button>
-                    </div>
-            
-                </div>
-
-            
-            
-            </div>
-        </div>   
-    
-        <div class="text-center">
-            <pagination-controls (pageChange)="page = $event"></pagination-controls>
-        </div>
-
-</div>
- -->
-
  <div class="container">
+
+    <button type="button"class="btn btn-info ml-4" (click)="salvar()">salvar</button>
     <div class="estrutura">
        
         <div class="livro text-center" *ngFor="let Livro of livro | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
             <div class="img-livro">
-                <img src="assets/img/book.png" alt="">
+                <img src="assets/img/book.png" class="rounded"alt="">
             </div>
             
             <div class="titulo">            
