@@ -12,6 +12,7 @@ import { LivroReadComponent } from './component/livro/livro-read/livro-read.comp
 import { NgxPaginationModule } from 'ngx-pagination';
 import { LivroCreateComponent } from './component/livro/livro-create/livro-create.component';
 import { BookUpdateComponent } from './component/livro/book-update/book-update.component';
+import { LivroRemoveComponent } from './component/livro/livro-remove/livro-remove.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { BookUpdateComponent } from './component/livro/book-update/book-update.c
     LivroCrudComponent,
     LivroReadComponent,
     LivroCreateComponent,
-    BookUpdateComponent
+    BookUpdateComponent,
+    LivroRemoveComponent
   ],
   imports: [
     BrowserModule,

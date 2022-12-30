@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LivroCrudComponent } from './views/livro-crud/livro-crud.component'
 import { LivroCreateComponent } from './component/livro/livro-create/livro-create.component'
 import { BookUpdateComponent } from './component/livro/book-update/book-update.component';
+import { LivroRemoveComponent } from './component/livro/livro-remove/livro-remove.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path:'updatebook/:id',
     component:BookUpdateComponent
+  },
+  {
+    path:'deletebook/:id',
+    component:LivroRemoveComponent
   }
 ];
 

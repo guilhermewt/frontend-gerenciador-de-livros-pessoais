@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="pb-2 mt-4 mb-4 border-bottom">
+        <h2>deletar livro</h2>
+    </div>
+    
+    <div class="col-sm-6">
+        <form>
+            
+            <div class="form-group">
+                <label for="titulo">titulo</label>
+                <input type="text" class="form-control" [(ngModel)]="livro.titulo" name="titulo" readonly>
+            </div>
+            
+            <button type="submit" class="btn btn-danger" (click)="deleteBook()">deletar</button>
+            <button type="button" class="btn btn-warning" (click)="cancel()">cancelar</button>
+        </form>
+    </div>
+</div>
+
+<!--criei um component create,service,routing,estilizacao,
+                criar os botoes
+            criamos a funcionalidade salvar
+            e criamos no readbyid no service
+            implementacao do editar
+            (falta implementa o remove)
+            -->
