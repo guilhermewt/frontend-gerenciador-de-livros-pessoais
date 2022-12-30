@@ -11,6 +11,7 @@ import { LivroCrudComponent } from './views/livro-crud/livro-crud.component';
 import { LivroReadComponent } from './component/livro/livro-read/livro-read.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { LivroCreateComponent } from './component/livro/livro-create/livro-create.component';
+import { BookUpdateComponent } from './component/livro/book-update/book-update.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LivroCreateComponent } from './component/livro/livro-create/livro-creat
     HeaderComponent,
     LivroCrudComponent,
     LivroReadComponent,
-    LivroCreateComponent
+    LivroCreateComponent,
+    BookUpdateComponent
   ],
   imports: [
     BrowserModule,

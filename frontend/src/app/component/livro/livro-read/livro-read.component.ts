@@ -30,4 +30,8 @@ export class LivroReadComponent implements OnInit{
     this.router.navigate(['/create'])
   }
 
+  editBook():void{
+    this.router.navigate(['/updatebook'])
+  }
+
 }

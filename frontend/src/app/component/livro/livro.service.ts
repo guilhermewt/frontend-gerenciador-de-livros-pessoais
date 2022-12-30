@@ -23,4 +23,20 @@ export class LivroService {
   create(livro:Livro):Observable<Livro>{
     return this.http.post<Livro>(this.baseUrl,livro);
   }
-}
+
+  readById(id:string):Observable<Livro>{
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.get<Livro>(url);
+  }
+
+  update(livro:Livro):Observable<Livro>{
+    const url = `${this.baseUrl}/${livro.id}`;
+    return this.http.put<Livro>(url,livro);
+  }
+
+  showMensage(msg:string){
+    console.log(msg);
+  }
+
+}  
+
