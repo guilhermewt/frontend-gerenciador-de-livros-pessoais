@@ -1,4 +1,5 @@
 export interface Livro{
     id?:number,
-    titulo:string
+    titulo:string,
+    status:string
 }

@@ -11,8 +11,11 @@ import { LivroService } from '../livro.service';
 export class LivroCreateComponent implements OnInit{
   
   livro:Livro = {
-    titulo:''
+    titulo:'',
+    status:''
   }
+
+  // statusBook:string[] = ['lido','ler']
 
   constructor(private livroService:LivroService,private router:Router){
 

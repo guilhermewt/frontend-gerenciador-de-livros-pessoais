@@ -14,6 +14,8 @@ export class BookUpdateComponent implements OnInit{
   constructor(private livroService:LivroService,private activeRouter:ActivatedRoute,private router:Router){}
 
   livro!:Livro
+  statusBook:string[] = ['lido','ler'];
+
   ngOnInit(): void {
     const id = this.activeRouter.snapshot.paramMap.get('id');
     this.livroService.readById(id!).subscribe(livro => {

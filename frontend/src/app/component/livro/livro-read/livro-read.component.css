@@ -15,7 +15,7 @@
 .livro{
     width: 230px;
     height: 275px;
-    margin: 20px;
+    margin: 20px 20px 30px 20px;
     box-sizing: border-box;
     color:white;
 }
@@ -46,8 +46,15 @@
     flex-flow: wrap;
 }
 
+button{
+    margin-bottom: 10px;
+}
+
 /*=========paginacao=========*/
 
+.paginacao{
+    margin: 20px;
+}
 
 /*=======tipografia=======*/
 .livro h3{
