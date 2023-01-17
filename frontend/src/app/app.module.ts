@@ -13,6 +13,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { LivroCreateComponent } from './component/livro/livro-create/livro-create.component';
 import { BookUpdateComponent } from './component/livro/book-update/book-update.component';
 import { LivroRemoveComponent } from './component/livro/livro-remove/livro-remove.component';
+import { TestingComponent } from './component/testofthesoftwarebug/testing/testing.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LivroRemoveComponent } from './component/livro/livro-remove/livro-remov
     LivroReadComponent,
     LivroCreateComponent,
     BookUpdateComponent,
-    LivroRemoveComponent
+    LivroRemoveComponent,
+    TestingComponent
   ],
   imports: [
     BrowserModule,
