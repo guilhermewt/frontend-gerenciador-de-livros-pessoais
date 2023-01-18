@@ -2,64 +2,79 @@
   "livro": [
     {
       "id": 1,
-      "titulo": "A arte da guerra"
+      "titulo": "A arte da guerra",
+      "status": "lido"
     },
     {
       "id": 2,
-      "titulo": "O poder do hábito"
+      "titulo": "O poder do hábito",
+      "status": "lido"
     },
     {
       "id": 3,
-      "titulo": "A revolução dos bichos: Um conto de fadas"
+      "titulo": "A revolução dos bichos: Um conto de fadas",
+      "status": "ler"
+
     },
     {
       "id": 4,
-      "titulo": "O Príncipe: Texto Integral"
+      "titulo": "O Príncipe: Texto Integral",
+      "status": "lido"
     },
     {
       "id": 5,
-      "titulo": "Mindset: A nova psicologia do sucesso"
+      "titulo": "Mindset: A nova psicologia do sucesso",
+      "status": "ler"
     },
     {
       "id": 6,
-      "titulo": "Como falar corretamente e sem inibições"
+      "titulo": "Como falar corretamente e sem inibições",
+      "status": "lido"
     },
     {
       "id": 7,
-      "titulo": "Como convencer alguém em 90 segundos: Crie uma primeira impressão"
+      "titulo": "Como convencer alguém em 90 segundos: Crie uma primeira impressão",
+      "status": "ler"
     },
     {
       "id": 8,
-      "titulo": "Os hábitos secretos dos gênios: Aprenda a identificar e lapidar suas habilidades"
+      "titulo": "Os hábitos secretos dos gênios: Aprenda a identificar e lapidar suas habilidades",
+      "status": "lido"
     },
     {
       "id": 9,
-      "titulo": "A arte da estratégia"
+      "titulo": "A arte da estratégia",
+      "status": "ler"
     },
     {
       "id": 10,
-      "titulo": "Matemática De A A Z 2o Edição"
-    }
-    ,
+      "titulo": "Matemática De A A Z 2o Edição",
+      "status": "lido"
+    },
     {
       "id": 11,
-      "titulo": "Como falar corretamente e sem inibições"
+      "titulo": "Como falar corretamente e sem inibições",
+      "status": "ler"
     },
     {
       "id": 12,
-      "titulo": "Como convencer alguém em 90 segundos: Crie uma primeira impressão"
+      "titulo": "Como convencer alguém em 90 segundos: Crie uma primeira impressão",
+      "status": "lido"
     },
     {
       "id": 13,
-      "titulo": "Os hábitos secretos dos gênios: Aprenda a identificar e lapidar suas habilidades"
+      "titulo": "Os hábitos secretos dos gênios: Aprenda a identificar e lapidar suas habilidades",
+      "status": "ler"
     },
     {
       "id": 14,
-      "titulo": "A arte da estratégia"
+      "titulo": "A arte da estratégia",
+      "status": "lido"
     },
     {
       "id": 15,
-      "titulo": "Matemática De A A Z 2o Edição"
+      "titulo": "Matemática De A A Z 2o Edição",
+      "status": "lido"
     }
   ]
 }
