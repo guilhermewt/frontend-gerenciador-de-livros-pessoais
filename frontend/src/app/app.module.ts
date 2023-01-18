@@ -13,7 +13,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { LivroCreateComponent } from './component/livro/livro-create/livro-create.component';
 import { BookUpdateComponent } from './component/livro/book-update/book-update.component';
 import { LivroRemoveComponent } from './component/livro/livro-remove/livro-remove.component';
-import { TestingComponent } from './component/testofthesoftwarebug/testing/testing.component';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCoffee, faPen, faTrash, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
   declarations: [
@@ -23,8 +24,7 @@ import { TestingComponent } from './component/testofthesoftwarebug/testing/testi
     LivroReadComponent,
     LivroCreateComponent,
     BookUpdateComponent,
-    LivroRemoveComponent,
-    TestingComponent
+    LivroRemoveComponent
   ],
   imports: [
     BrowserModule,
@@ -32,10 +32,15 @@ import { TestingComponent } from './component/testofthesoftwarebug/testing/testi
     DataTablesModule,
     HttpClientModule,
     NgxPaginationModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
     
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(library:FaIconLibrary){
+    library.addIcons(faCoffee,faPen,faTrash)
+  }
+}
