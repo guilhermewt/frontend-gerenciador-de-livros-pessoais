@@ -4,6 +4,7 @@ import { LivroCrudComponent } from './views/livro-crud/livro-crud.component'
 import { LivroCreateComponent } from './component/livro/livro-create/livro-create.component'
 import { BookUpdateComponent } from './component/livro/book-update/book-update.component';
 import { LivroRemoveComponent } from './component/livro/livro-remove/livro-remove.component';
+import { LoanComponent } from './component/loan/loan/loan.component'
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path:'deletebook/:id',
     component:LivroRemoveComponent
+  },
+  {
+    path:'loan/:id',
+    component:LoanComponent
   }
 ];
 

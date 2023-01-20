@@ -15,7 +15,7 @@
             <div class="buttons">
                 <button class="btn btn-warning" routerLink="/updatebook/{{ Livro.id }}"><fa-icon [icon]="['fas','pen']"></fa-icon></button>
                 <button class="btn btn-danger" routerLink="/deletebook/{{ Livro.id }}"><fa-icon [icon]="['fas', 'trash']"></fa-icon></button>
-                <button class="btn btn-primary">emprestar</button>
+                <button class="btn btn-primary" routerLink="/loan/{{Livro.id}}">emprestar</button>
             </div>
             <label for="" style="font-size:20px;">status: {{ Livro.status }}</label>
             
