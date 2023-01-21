@@ -29,4 +29,12 @@ export class LoanComponent implements OnInit{
       console.log(this.loan)
     })
   }
+
+  saveLoan():void{
+
+  }
+
+  cancel():void{
+
+  }
 }
