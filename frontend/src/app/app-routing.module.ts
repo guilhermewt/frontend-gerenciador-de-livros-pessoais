@@ -4,7 +4,8 @@ import { LivroCrudComponent } from './views/livro-crud/livro-crud.component'
 import { LivroCreateComponent } from './component/livro/livro-create/livro-create.component'
 import { BookUpdateComponent } from './component/livro/book-update/book-update.component';
 import { LivroRemoveComponent } from './component/livro/livro-remove/livro-remove.component';
-import { LoanComponent } from './component/loan/loan/loan.component'
+import { LoanComponent } from './component/loan/loan-read/loan-read.component'
+import { LoanCreateComponent } from './component/loan/loan-create/loan-create.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path:'loan/:id',
     component:LoanComponent
+  },
+  {
+    path:'loan-create/:idBook',
+    component:LoanCreateComponent
   }
 ];
 

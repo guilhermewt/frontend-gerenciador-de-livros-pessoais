@@ -6,8 +6,8 @@ import { Loan } from './loan.model';
 
 @Component({
   selector: 'app-loan',
-  templateUrl: './loan.component.html',
-  styleUrls: ['./loan.component.css']
+  templateUrl: './loan-read.component.html',
+  styleUrls: ['./loan-read.component.css']
 })
 export class LoanComponent implements OnInit{
 
@@ -30,11 +30,4 @@ export class LoanComponent implements OnInit{
     })
   }
 
-  saveLoan():void{
-
-  }
-
-  cancel():void{
-
-  }
 }

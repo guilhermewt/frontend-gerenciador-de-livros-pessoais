@@ -15,7 +15,8 @@ import { BookUpdateComponent } from './component/livro/book-update/book-update.c
 import { LivroRemoveComponent } from './component/livro/livro-remove/livro-remove.component';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCoffee, faPen, faTrash, faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import { LoanComponent } from './component/loan/loan/loan.component';
+import { LoanComponent } from './component/loan/loan-read/loan-read.component';
+import { LoanCreateComponent } from './component/loan/loan-create/loan-create.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { LoanComponent } from './component/loan/loan/loan.component';
     LivroCreateComponent,
     BookUpdateComponent,
     LivroRemoveComponent,
-    LoanComponent
+    LoanComponent,
+    LoanCreateComponent
   ],
   imports: [
     BrowserModule,
