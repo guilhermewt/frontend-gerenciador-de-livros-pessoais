@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Livro } from '../../livro/livro.model';
 import { LivroService } from '../../livro/livro.service';
+import { LoanService } from '../loan-service.service';
 import { Loan } from './loan.model';
 
 @Component({
@@ -11,7 +12,7 @@ import { Loan } from './loan.model';
 })
 export class LoanComponent implements OnInit{
 
-  constructor(private bookService:LivroService,private router:Router,private activedRouter:ActivatedRoute){}
+  constructor(private bookService:LivroService,private router:Router,private activedRouter:ActivatedRoute,private loanService:LoanService){}
 
   book!:Livro 
 
@@ -28,6 +29,10 @@ export class LoanComponent implements OnInit{
       console.log(book)
       console.log(this.loan)
     })
+
+    // this.loanService.getLoanByBookId(this.book.id!).subscribe(loan => {
+    //   this.loan = loan;
+    // })
   }
 
 }

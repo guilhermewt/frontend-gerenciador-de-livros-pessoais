@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Livro } from '../../livro/livro.model';
 import { LivroService } from '../../livro/livro.service';
 import { Loan } from '../loan-read/loan.model';
+import { LoanService } from '../loan-service.service';
 
 @Component({
   selector: 'app-loan-create',
@@ -10,7 +11,8 @@ import { Loan } from '../loan-read/loan.model';
   styleUrls: ['./loan-create.component.css']
 })
 export class LoanCreateComponent implements OnInit{
-  constructor(private bookService:LivroService,private router:Router,private activedRouter:ActivatedRoute){}
+ 
+  constructor(private bookService:LivroService,private router:Router,private activedRouter:ActivatedRoute,private loanService:LoanService){}
 
   book!:Livro 
 
@@ -25,7 +27,14 @@ export class LoanCreateComponent implements OnInit{
     this.bookService.readById(id!).subscribe(book => {
       this.book = book
       console.log(book)
-      console.log(this.loan)
+    })
+  }
+
+  saveLoan():void{
+    const id = this.activedRouter.snapshot.paramMap.get('idBook');
+    this.loanService.saveLoan(id!,this.loan).subscribe(() => {
+      this.loanService.showMensage('loan created')
+      this.router.navigate(['/'])
     })
   }
 }
