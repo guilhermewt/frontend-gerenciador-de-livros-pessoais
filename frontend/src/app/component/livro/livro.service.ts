@@ -29,6 +29,11 @@ export class LivroService {
     return this.http.get<Livro>(url);
   }
 
+  findByStatus(statusBook:string):Observable<Livro[]>{
+    const url = `${this.baseUrl}?status=${statusBook}`
+    return this.http.get<Livro[]>(url);
+  }
+
   update(livro:Livro):Observable<Livro>{
     const url = `${this.baseUrl}/${livro.id}`;
     return this.http.put<Livro>(url,livro);
