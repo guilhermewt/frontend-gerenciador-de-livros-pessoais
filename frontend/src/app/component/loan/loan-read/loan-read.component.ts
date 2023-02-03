@@ -26,8 +26,6 @@ export class LoanComponent implements OnInit{
     const id = this.activedRouter.snapshot.paramMap.get('id');
     this.bookService.readById(id!).subscribe(book => {
       this.book = book
-      console.log(book)
-      console.log(this.loan)
     })
 
     // this.loanService.getLoanByBookId(this.book.id!).subscribe(loan => {

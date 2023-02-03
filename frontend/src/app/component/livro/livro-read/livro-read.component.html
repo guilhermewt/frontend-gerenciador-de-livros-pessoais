@@ -1,6 +1,16 @@
  <div class="container">
 
-    <button type="button"class="btn btn-info ml-4" (click)="salvar()">salvar</button>
+        <div class="filterBooks">
+            <button type="button"class="btn btn-info ml-4" (click)="salvar()">salvar</button>
+            
+            <select [(ngModel)]="statusToFilter" name="statusToFilter">
+                 <option  *ngFor="let statusBook of statusBook" [ngValue]="statusBook">{{ statusBook }}</option>
+            </select>
+              
+            <button type="button"class="btn btn-danger ml-1" (click)="filter()">filter</button>
+            
+        </div>
+    
     <div class="estrutura">
        
         <div class="livro text-center" *ngFor="let Livro of livro | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
@@ -15,7 +25,7 @@
             <div class="buttons">
                 <button class="btn btn-warning" routerLink="/updatebook/{{ Livro.id }}"><fa-icon [icon]="['fas','pen']"></fa-icon></button>
                 <button class="btn btn-danger" routerLink="/deletebook/{{ Livro.id }}"><fa-icon [icon]="['fas', 'trash']"></fa-icon></button>
-                <button class="btn btn-primary" routerLink="/loan/{{Livro.id}}">emprestar</button>
+                <button class="btn btn-primary" routerLink="/loan/{{Livro.id}}">emprestimo</button>
             </div>
             <label for="" style="font-size:20px;">status: {{ Livro.status }}</label>
             
@@ -27,7 +37,3 @@
         <pagination-controls (pageChange)="page = $event"></pagination-controls>
     </div>
  </div>
-
- 
-
-   

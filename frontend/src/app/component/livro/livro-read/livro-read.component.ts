@@ -15,13 +15,18 @@ export class LivroReadComponent implements OnInit{
 
   page:number = 1;
   livro!:Livro[];
+  livroPermanent!:Livro[];
   itemsPerPage:number=12;
   totalProduct:any;
+
+  statusBook:string[] = ['todos','lido','ler','lendo','emprestado']
+  statusToFilter!:string
   
   ngOnInit(): void {
   
      this.livroService.read().subscribe((livro) => {
-      this.livro = livro;
+      this.livroPermanent = livro;
+      this.livro = this.livroPermanent
       this.totalProduct = livro.length;
     })
   }
@@ -32,6 +37,16 @@ export class LivroReadComponent implements OnInit{
 
   editBook():void{
     this.router.navigate(['/updatebook'])
+  }
+  book!:Livro[]
+
+  filter():void{
+    this.livro = this.livroPermanent
+    this.book = this.livro.filter(el => el.status === this.statusToFilter);
+    if(this.statusToFilter != 'todos'){
+      this.livro = this.book;
+    }
+   
   }
 
 }

@@ -20,6 +20,10 @@
     color:white;
 }
 
+ .filterBooks > button{
+    margin-right: 20px;
+ }
+
 /*===========livro card==============*/
 
 .img-livro > img{

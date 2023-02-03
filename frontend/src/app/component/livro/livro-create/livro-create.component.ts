@@ -15,7 +15,7 @@ export class LivroCreateComponent implements OnInit{
     status:''
   }
 
-  // statusBook:string[] = ['lido','ler']
+   statusBook:string[] = ['lido','ler','lendo']
 
   constructor(private livroService:LivroService,private router:Router){
 
