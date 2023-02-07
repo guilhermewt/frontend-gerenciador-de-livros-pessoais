@@ -14,21 +14,25 @@ export class LivroReadComponent implements OnInit{
   constructor(private livroService:LivroService,private router:Router) { }
 
   page:number = 1;
-  livro!:Livro[];
-  livroPermanent!:Livro[];
+  bookFromDataBase!:Livro[];
+  bookToShow!:Livro[];
   itemsPerPage:number=12;
   totalProduct:any;
 
   statusBook:string[] = ['todos','lido','ler','lendo','emprestado']
   statusToFilter!:string
+  filteredBooks!:Livro[]
   
   ngOnInit(): void {
   
-     this.livroService.read().subscribe((livro) => {
-      this.livroPermanent = livro;
-      this.livro = this.livroPermanent
-      this.totalProduct = livro.length;
+     this.livroService.read().subscribe((book) => {
+      this.bookFromDataBase = book;
+      this.bookToShow = this.bookFromDataBase
     })
+  }
+
+  mostrar(page:string):void{
+    console.log(page)
   }
 
   salvar():void{
@@ -38,15 +42,25 @@ export class LivroReadComponent implements OnInit{
   editBook():void{
     this.router.navigate(['/updatebook'])
   }
-  book!:Livro[]
+  
 
   filter():void{
-    this.livro = this.livroPermanent
-    this.book = this.livro.filter(el => el.status === this.statusToFilter);
+    this.bookToShow = this.bookFromDataBase
+    this.filteredBooks = this.bookToShow.filter(el => el.status === this.statusToFilter);
+    
     if(this.statusToFilter != 'todos'){
-      this.livro = this.book;
+      this.bookToShow = this.filteredBooks
     }
    
+  }
+
+  search(e:Event):void{
+    const target = e.target as HTMLInputElement
+    const value = target.value
+
+    this.bookToShow = this.bookFromDataBase.filter((books) => {
+      return books.titulo.toLocaleLowerCase().includes(value)
+    })
   }
 
 }
