@@ -18,6 +18,7 @@ export class LivroReadComponent implements OnInit{
   bookToShow!:Livro[];
   itemsPerPage:number=12;
   totalProduct:any;
+  bookToSearch!:string
 
   statusBook:string[] = ['todos','lido','ler','lendo','emprestado']
   statusToFilter!:string
@@ -51,6 +52,10 @@ export class LivroReadComponent implements OnInit{
     if(this.statusToFilter != 'todos'){
       this.bookToShow = this.filteredBooks
     }
+
+    // this.livroService.findBookByStatus(this.statusToFilter).subscribe((books) => {
+    //   this.bookToShow = books
+    // })
    
   }
 
@@ -62,5 +67,13 @@ export class LivroReadComponent implements OnInit{
       return books.titulo.toLocaleLowerCase().includes(value)
     })
   }
+  
+  // searchBook():void{
+  //   this.livroService.searchBook(this.bookToSearch).subscribe((books) => {
+  //     this.bookToShow = books;
+  //   })
+  // }
+
+
 
 }
