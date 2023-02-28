@@ -6,6 +6,7 @@ import { BookUpdateComponent } from './component/livro/book-update/book-update.c
 import { LivroRemoveComponent } from './component/livro/livro-remove/livro-remove.component';
 import { LoanComponent } from './component/loan/loan-read/loan-read.component'
 import { LoanCreateComponent } from './component/loan/loan-create/loan-create.component';
+import { LoginComponent } from './component/login/login.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path:'loan-create/:idBook',
     component:LoanCreateComponent
+  },
+  {
+    path:'login',
+    component:LoginComponent
   }
 ];
 
