@@ -1,6 +1,12 @@
 
 <div style="margin-left: 50px">
-    <input type="text" [(ngModel)]="requestLogin.username">
+    <input type="text" [(ngModel)]="requestLogin.login">
     <input type="password" [(ngModel)]="requestLogin.password">
     <button type="button" (click)="doLogin()">login</button>
 </div>
+
+<div style="margin-left: 50px">
+   
+    <button type="button" (click)="testApi()">testApi</button>
+</div>
+
