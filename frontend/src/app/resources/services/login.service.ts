@@ -1,8 +1,6 @@
-import { HttpClient, HttpContextToken, HttpHeaders } from '@angular/common/http';
-import { TokenType } from '@angular/compiler';
-import { Injectable, NgProbeToken, ProviderToken } from '@angular/core';
+import { HttpClient} from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LoginComponent } from 'src/app/component/login/login.component';
 import { RequestLogin } from '../models/requestLogin';
 import { responseLogin } from '../models/responseLogin';
 
@@ -15,19 +13,16 @@ export class LoginService {
 
   constructor(private http:HttpClient) { }
 
-  public  doLogin(requestLogin:RequestLogin):Observable<any>{
-    console.log(requestLogin)
-    return this.http.post<any>(`${this.baseUrl}login`,requestLogin)
+  public doLogin(requestLogin:RequestLogin):void{
+    this.http.post<responseLogin>(`${this.baseUrl}login`,requestLogin).subscribe(
+      (data) => {
+        localStorage.setItem('token',data.token)
+        console.log('usuario logado' + data.token)       
+      });
   }
 
-  obterPerfil(jwt:string):Observable<any> {
-    const httpOptions = {
-     headers: new HttpHeaders({
-       Authorization: `Bearer ${jwt}`
-     })
-   };
-
-   return this.http.get<any>(`${this.baseUrl}api/usuario/listarTodos`, httpOptions);
+  obterPerfil():Observable<responseLogin> {
+   return this.http.get<any>(`${this.baseUrl}orders`);
  }
 
 }

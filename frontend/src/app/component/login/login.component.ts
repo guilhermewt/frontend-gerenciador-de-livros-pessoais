@@ -12,7 +12,6 @@ import { LoginService } from 'src/app/resources/services/login.service';
 export class LoginComponent implements OnInit{
 
   public requestLogin!: RequestLogin;
-  responseLogin!:responseLogin
 
   constructor(private loginService:LoginService){}
 
@@ -21,18 +20,11 @@ export class LoginComponent implements OnInit{
   }
 
   doLogin():void{
-    this.loginService.doLogin(this.requestLogin).subscribe(
-      (data) => {
-        this.responseLogin = data;
-        console.log(data)
-      },
-      
-    )
-    
+    this.loginService.doLogin(this.requestLogin);
   }
 
   testApi():void{
-    this.loginService.obterPerfil(this.responseLogin.jwt).subscribe(data => {
+    this.loginService.obterPerfil().subscribe(data => {
       console.log(data)
     })
   }

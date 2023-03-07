@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DataTablesModule } from "angular-datatables";
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './component/template/header/header.component';
 import { LivroCrudComponent } from './views/livro-crud/livro-crud.component';
@@ -18,6 +18,7 @@ import { faCoffee, faPen, faTrash, faTrashCan } from '@fortawesome/free-solid-sv
 import { LoanComponent } from './component/loan/loan-read/loan-read.component';
 import { LoanCreateComponent } from './component/loan/loan-create/loan-create.component';
 import { LoginComponent } from './component/login/login.component';
+import { LogInterceptor }from './resources/services/LogInterceptor';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,13 @@ import { LoginComponent } from './component/login/login.component';
     FontAwesomeModule
     
   ],
-  providers: [],
+  providers: [
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: LogInterceptor,
+    multi: true   
+  }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

@@ -1,3 +1,4 @@
 export class responseLogin{
-    jwt!:string; 
+    username!:string
+    token!:string; 
 }
