@@ -1,4 +1,4 @@
-import { HttpClient} from '@angular/common/http';
+import { HttpBackend, HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RequestLogin } from '../models/requestLogin';
@@ -11,18 +11,26 @@ export class LoginService {
 
   baseUrl = '/api/'
 
-  constructor(private http:HttpClient) { }
+  private httpClient: HttpClient;
 
+  constructor( handler: HttpBackend,private http:HttpClient) { 
+     this.httpClient = new HttpClient(handler);
+  }
+
+  
   public doLogin(requestLogin:RequestLogin):void{
-    this.http.post<responseLogin>(`${this.baseUrl}login`,requestLogin).subscribe(
+    sessionStorage.removeItem('token')
+    this.httpClient.post<responseLogin>(`${this.baseUrl}login`,requestLogin).subscribe(
       (data) => {
-        localStorage.setItem('token',data.token)
-        console.log('usuario logado' + data.token)       
+
+        console.log('usuario logado ' + data.token)     
+       
+        sessionStorage.setItem('token',data.token)      
       });
   }
 
   obterPerfil():Observable<responseLogin> {
-   return this.http.get<any>(`${this.baseUrl}orders`);
- }
+    return this.http.get<any>(`${this.baseUrl}orders`);
+  }
 
 }
