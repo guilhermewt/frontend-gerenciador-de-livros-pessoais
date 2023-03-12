@@ -7,15 +7,19 @@ import { LivroRemoveComponent } from './component/livro/livro-remove/livro-remov
 import { LoanComponent } from './component/loan/loan-read/loan-read.component'
 import { LoanCreateComponent } from './component/loan/loan-create/loan-create.component';
 import { LoginComponent } from './component/login/login.component';
+import { AuthService } from './resources/services/auth.service';
+import { AuthGuardService } from './resources/services/auth-guard.service';
 
 const routes: Routes = [
   {
     path:'',
+   canActivate:[AuthGuardService],
     component: LivroCrudComponent
   },
   {
     path:'create',
-    component:LivroCreateComponent
+    component:LivroCreateComponent,
+    canActivate:[AuthGuardService]
   },
   {
     path:'updatebook/:id',
@@ -36,11 +40,15 @@ const routes: Routes = [
   {
     path:'login',
     component:LoginComponent
+  },
+  {
+    path:'**',
+    redirectTo:'login'
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/resources/services/login.service';
 import { Livro } from '../livro.model';
 import { LivroService } from '../livro.service';
 
@@ -11,7 +12,7 @@ import { LivroService } from '../livro.service';
 export class LivroReadComponent implements OnInit{
 
 
-  constructor(private livroService:LivroService,private router:Router) { }
+  constructor(private livroService:LivroService,private router:Router,private loginService:LoginService) { }
 
   page:number = 1;
   bookFromDataBase!:Livro[];
@@ -73,6 +74,12 @@ export class LivroReadComponent implements OnInit{
   //     this.bookToShow = books;
   //   })
   // }
+
+  testApi():void{
+    this.loginService.obterPerfil().subscribe(data => {
+      console.log(data)
+    })
+  }
 
 
 
