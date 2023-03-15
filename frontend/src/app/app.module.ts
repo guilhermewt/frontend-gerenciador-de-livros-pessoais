@@ -19,6 +19,8 @@ import { LoanComponent } from './component/loan/loan-read/loan-read.component';
 import { LoanCreateComponent } from './component/loan/loan-create/loan-create.component';
 import { LoginComponent } from './component/login/login.component';
 import { LogInterceptor }from './resources/services/LogInterceptor';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,10 @@ import { LogInterceptor }from './resources/services/LogInterceptor';
     HttpClientModule,
     NgxPaginationModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ToastrModule.forRoot({ positionClass: 'toast-bottom-right',
+    preventDuplicates: true,}),
+     BrowserAnimationsModule, 
     
   ],
   providers: [

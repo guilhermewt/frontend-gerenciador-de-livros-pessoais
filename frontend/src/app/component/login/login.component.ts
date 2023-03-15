@@ -3,6 +3,7 @@ import { error } from 'jquery';
 import { RequestLogin } from 'src/app/resources/models/requestLogin';
 import { responseLogin } from 'src/app/resources/models/responseLogin';
 import { LoginService } from 'src/app/resources/services/login.service';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit{
 
   public requestLogin!: RequestLogin;
 
-  constructor(private loginService:LoginService){}
+  constructor(private loginService:LoginService,private router:Router){}
 
   ngOnInit(): void {
     this.requestLogin = new RequestLogin();
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit{
 
   doLogin():void{
     this.loginService.doLogin(this.requestLogin);
+    
   }
 
   testApi():void{

@@ -33,6 +33,7 @@ export class LivroService {
     const url = `${this.baseUrl}?status=${statusBook}`
     return this.http.get<Livro[]>(url);
   }
+  
 
   searchBook(book:string):Observable<Livro[]>{
     const url = `${this.baseUrl}/searchBook?name=${book}`

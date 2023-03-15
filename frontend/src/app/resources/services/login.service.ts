@@ -7,6 +7,7 @@ import { tap } from 'rxjs/operators';
 import { RequestLogin } from '../models/requestLogin';
 import { responseLogin } from '../models/responseLogin';
 import { AuthService } from './auth.service';
+import { ExceptionsService } from './exceptions.service'
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class LoginService {
 
   private httpClient: HttpClient;
 
-  constructor( handler: HttpBackend,private http:HttpClient,private authService:AuthService,private router:Router) { 
+  constructor( handler: HttpBackend,private http:HttpClient,private authService:AuthService,private router:Router,private exceptions:ExceptionsService) { 
      this.httpClient = new HttpClient(handler);
   }
 
@@ -25,28 +26,21 @@ export class LoginService {
   public doLogin(requestLogin:RequestLogin):void{
     this.httpClient.post<responseLogin>(`${this.baseUrl}login`,requestLogin)
     .pipe(
-      tap((loginResponse) =>    
-            this.authService.loginResponse = loginResponse      
-      ))
-      .subscribe(data => {
+      tap((loginResponse) => this.authService.loginResponse = loginResponse),
+      map(obj => obj),
+      catchError(e => this.exceptions.userNotFound(e)))
+    .subscribe(data => {
         sessionStorage.setItem('token',data.token)
+        this.router.navigate([''])
       })
 
   }
 
-  obterPerfil():Observable<responseLogin> {
+  obterPerfil():Observable<any> {
     return this.http.get<any>(`${this.baseUrl}orders`).pipe(
       map(obj => obj),
-        catchError(e => this.errorHandler(e)) 
+        catchError(e => this.exceptions.errorHandler(e)) 
     );
   }
 
-  errorHandler(e:HttpErrorResponse): Observable<any>{
-    if(e.status == 403 || 500){
-      console.log('ocorreu um error na operacao','error!','token invalido! faça o login novamente')
-      this.router.navigate(['/login'])
-      return EMPTY
-    }
-    return EMPTY
-  }
 }

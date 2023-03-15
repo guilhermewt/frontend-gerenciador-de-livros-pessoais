@@ -18,23 +18,27 @@ const routes: Routes = [
   },
   {
     path:'create',
-    component:LivroCreateComponent,
-    canActivate:[AuthGuardService]
+    canActivate:[AuthGuardService],
+    component:LivroCreateComponent
   },
   {
     path:'updatebook/:id',
+    canActivate:[AuthGuardService],
     component:BookUpdateComponent
   },
   {
     path:'deletebook/:id',
+    canActivate:[AuthGuardService],
     component:LivroRemoveComponent
   },
   {
     path:'loan/:id',
+    canActivate:[AuthGuardService],
     component:LoanComponent
   },
   {
     path:'loan-create/:idBook',
+    canActivate:[AuthGuardService],
     component:LoanCreateComponent
   },
   {
