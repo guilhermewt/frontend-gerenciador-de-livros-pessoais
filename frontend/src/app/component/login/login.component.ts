@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit{
 
   doLogin():void{
     this.loginService.doLogin(this.requestLogin);
-    
   }
 
   testApi():void{

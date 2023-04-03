@@ -10,7 +10,7 @@ export class ExceptionsService {
 
   constructor(private router:Router,private toastr: ToastrService) { }
 
-  errorHandler(e:HttpErrorResponse): Observable<any>{
+  tokenFailed(e:HttpErrorResponse): Observable<any>{
     if(e.status == 403 || 500){
       console.log('ocorreu um error na operacao','error!','token invalido! faça o login novamente')
       this.router.navigate(['/login'])
@@ -25,6 +25,13 @@ export class ExceptionsService {
   userNotFound(e:HttpErrorResponse):Observable<any>{
     console.log('login ou senha invalidos!')
     this.showMensage('login ou senha invalido','login error','toast-error')
+    return EMPTY
+  }
+
+
+  wrongPassword(e:HttpErrorResponse):Observable<any>{
+    console.log('wrong password')
+    this.showMensage('senha errada!','login error','toast-error')
     return EMPTY
   }
 

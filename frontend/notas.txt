@@ -1,0 +1,23 @@
+==========front end==============
+
+(configurar a recuperacao de senha)
+
+* usuario 
+* roteamento
+* layout
+* service
+
+'fizemos todo o processo de recuperar senha
+
+(cadastro de cliente)
+
+
+
+
+
+
+==============backend=============
+
+- campo status em livro e endpoint para pegar livro pelo status
+
+- criar end point para trocar senhar ele vai receber uma string e comparar com a que esta no banco

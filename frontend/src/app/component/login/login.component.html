@@ -31,13 +31,39 @@
                 <div class="structure_login ml-2 col- col-xl-5 col-sm-6">
                     <form>
                         <label for="login">Login</label>
-                        <input type="text" [(ngModel)]="requestLogin.username" class="form-control"><br>
+                        <input type="text" [(ngModel)]="requestLogin.username" class="form-control" name="username"><br>
                         <label for="senha">Senha</label>
-                        <input type="password" [(ngModel)]="requestLogin.password" class="form-control"><br>
+                        <input type="password" [(ngModel)]="requestLogin.password" class="form-control" name="password"><br>
                         <button type="button" (click)="doLogin()" class="btn btn-info">login</button>                 
                         <button type="button" (click)="testApi()" class="btn btn-danger" style="margin-left:10px;">testApi</button>
                     </form>
                 </div>
+
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+                      Dropdown button
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+
+
+                  <!-- <ul class="navbar-nav  ml-auto">
+                   
+                    <li class="dropdown nav-item">
+                       <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Minha conta 
+                         <span class="caret"></span>
+                       </a>
+
+                       <ul class="dropdown-menu">
+                         <li><a class="nav-link" href="#">Editar</a></li>
+                         <li><a class="nav-link" href="#">Logout</a></li>
+                       </ul>
+                    </li>
+                  </ul> -->
             
             </div>
             

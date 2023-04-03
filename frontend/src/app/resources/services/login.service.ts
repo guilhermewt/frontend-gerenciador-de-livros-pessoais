@@ -18,12 +18,13 @@ export class LoginService {
 
   private httpClient: HttpClient;
 
-  constructor( handler: HttpBackend,private http:HttpClient,private authService:AuthService,private router:Router,private exceptions:ExceptionsService) { 
+  constructor(private handler: HttpBackend,private http:HttpClient,private authService:AuthService,private router:Router,private exceptions:ExceptionsService) { 
      this.httpClient = new HttpClient(handler);
   }
 
   
   public doLogin(requestLogin:RequestLogin):void{
+    console.log(requestLogin)
     this.httpClient.post<responseLogin>(`${this.baseUrl}login`,requestLogin)
     .pipe(
       tap((loginResponse) => this.authService.loginResponse = loginResponse),
@@ -39,7 +40,7 @@ export class LoginService {
   obterPerfil():Observable<any> {
     return this.http.get<any>(`${this.baseUrl}orders`).pipe(
       map(obj => obj),
-        catchError(e => this.exceptions.errorHandler(e)) 
+        catchError(e => this.exceptions.tokenFailed(e)) 
     );
   }
 

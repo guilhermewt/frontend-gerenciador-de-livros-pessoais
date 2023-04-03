@@ -9,6 +9,7 @@ import { LoanCreateComponent } from './component/loan/loan-create/loan-create.co
 import { LoginComponent } from './component/login/login.component';
 import { AuthService } from './resources/services/auth.service';
 import { AuthGuardService } from './resources/services/auth-guard.service';
+import { ChangePasswordComponent } from './component/user/change-password/change-password.component'
 
 const routes: Routes = [
   {
@@ -44,6 +45,10 @@ const routes: Routes = [
   {
     path:'login',
     component:LoginComponent
+  },
+  {
+    path:'change/password',
+    component:ChangePasswordComponent
   },
   {
     path:'**',

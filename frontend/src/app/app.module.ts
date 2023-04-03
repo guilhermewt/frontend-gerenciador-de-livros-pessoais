@@ -14,13 +14,14 @@ import { LivroCreateComponent } from './component/livro/livro-create/livro-creat
 import { BookUpdateComponent } from './component/livro/book-update/book-update.component';
 import { LivroRemoveComponent } from './component/livro/livro-remove/livro-remove.component';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCoffee, faPen, faTrash, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faCoffee, faPen, faTrash, faTrashCan, faUser, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { LoanComponent } from './component/loan/loan-read/loan-read.component';
 import { LoanCreateComponent } from './component/loan/loan-create/loan-create.component';
 import { LoginComponent } from './component/login/login.component';
 import { LogInterceptor }from './resources/services/LogInterceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChangePasswordComponent } from './component/user/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LivroRemoveComponent,
     LoanComponent,
     LoanCreateComponent,
-    LoginComponent
+    LoginComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +61,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 })
 export class AppModule { 
   constructor(library:FaIconLibrary){
-    library.addIcons(faCoffee,faPen,faTrash)
+    library.addIcons(faCoffee,faPen,faTrash,faUserCircle,faUser)
   }
 }
