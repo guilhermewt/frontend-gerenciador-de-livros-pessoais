@@ -1,5 +1,5 @@
 export class user{
-    public username!: string;
-    public name!:string;
-    public password!:string
+    username!:string
+    name!:string
+    password!:string
 }

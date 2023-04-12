@@ -17,11 +17,8 @@ export class ChangePasswordComponent {
   constructor(private userDomainService:UserDomainService,private exceptions:ExceptionsService,private router:Router){}
 
   changePassword(){
-    this.userDomainService.changePassword(this.oldPassword).subscribe(
-      data => this.exceptions.showMensage('senha mudada com sucesso!','','toast-sucess')
-    )
-    this.router.navigate([''])
-
+    this.userDomainService.changePassword(this.oldPassword) .subscribe(data => 
+      this.exceptions.showMensage('senha mudada com sucesso!','','toast-sucess'))
   }
 
   public confirmPasswordMethod():boolean{

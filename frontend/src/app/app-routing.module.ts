@@ -10,6 +10,7 @@ import { LoginComponent } from './component/login/login.component';
 import { AuthService } from './resources/services/auth.service';
 import { AuthGuardService } from './resources/services/auth-guard.service';
 import { ChangePasswordComponent } from './component/user/change-password/change-password.component'
+import { CreateUserComponent } from './component/user/create-user/create-user.component'
 
 const routes: Routes = [
   {
@@ -50,6 +51,11 @@ const routes: Routes = [
     path:'change/password',
     component:ChangePasswordComponent
   },
+  {
+    path:'create/user',
+    component:CreateUserComponent
+  }
+  ,
   {
     path:'**',
     redirectTo:'login'

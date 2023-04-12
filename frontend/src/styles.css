@@ -6,9 +6,12 @@ body{
     */
     background-color: #373737;
     color:#fff;
+    background: url('/assets/img/books.png') no-repeat;
 }
 
 .input-transparent{
     background-color: #23222275;
     color:#fff;
 }
+
+

@@ -10,28 +10,38 @@ export class ExceptionsService {
 
   constructor(private router:Router,private toastr: ToastrService) { }
 
-  tokenFailed(e:HttpErrorResponse): Observable<any>{
-    if(e.status == 403 || 500){
-      console.log('ocorreu um error na operacao','error!','token invalido! faça o login novamente')
-      this.router.navigate(['/login'])
-      return EMPTY
+  throwException(e:HttpErrorResponse):Observable<any>{
+    if(e.status == 409){
+      this.defaultBadException('usuario ja existente!')
+    }
+    else if(e.status == 403){
+      this.tokenFailed()
     }
     else{
-       console.log('ocorreu um error na operacao')
+      this.defaultBadException('')
     }
+
     return EMPTY
   }
 
+  tokenFailed(): Observable<any>{
+      this.defaultBadException('sua sessão expirou faça o login novamente!')
+      this.router.navigate(['/login'])
+      return EMPTY
+  }
+
   userNotFound(e:HttpErrorResponse):Observable<any>{
-    console.log('login ou senha invalidos!')
     this.showMensage('login ou senha invalido','login error','toast-error')
     return EMPTY
   }
 
-
   wrongPassword(e:HttpErrorResponse):Observable<any>{
-    console.log('wrong password')
     this.showMensage('senha errada!','login error','toast-error')
+    return EMPTY
+  }
+
+  defaultBadException(mensage:string):Observable<any>{
+    this.showMensage(mensage,'ocorreu um problema','toast-error')
     return EMPTY
   }
 

@@ -1,36 +1,24 @@
-.container-fluid{
-	min-height: 700px;
-	background: url('/assets/img/livrosTest3.jpeg') no-repeat;
-}
-
 .structure_login{
 	display: flex;
 	align-items: center;
-	justify-content: center;
 	min-height: 250px;
-/*    margin:auto;*/
-	border-radius: 5%;
-	border:2px solid white;
 	margin-top: 10px;
 }
 
 .text_login{
-	border:1px solid red;
 	height: 700px;
 	display: flex;
     align-items: center;
-    justify-content: center;
 }
 
 
-/*.login_configure{
-	width: 500px;
-	padding: 20px;
-}*/
+.form-control{
+	background-color: rgba(9, 9, 9, 0.587);
+	color: white;
+	border: 1px solid rgb(33, 44, 33);
+}
 
-/*.row{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	min-height: 300px;
-}*/
+.form-control:focus{
+	background-color: rgba(208, 40, 40, 0.035);
+	color: white;
+}

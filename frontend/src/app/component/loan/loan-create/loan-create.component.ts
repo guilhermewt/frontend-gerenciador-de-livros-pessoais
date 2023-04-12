@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ExceptionsService } from 'src/app/resources/services/exceptions.service';
 import { Livro } from '../../livro/livro.model';
 import { LivroService } from '../../livro/livro.service';
 import { Loan } from '../loan-read/loan.model';
@@ -12,7 +13,8 @@ import { LoanService } from '../loan-service.service';
 })
 export class LoanCreateComponent implements OnInit{
  
-  constructor(private bookService:LivroService,private router:Router,private activedRouter:ActivatedRoute,private loanService:LoanService){}
+  constructor(private bookService:LivroService,private router:Router,private activedRouter:ActivatedRoute,
+    private loanService:LoanService, private exceptions:ExceptionsService){}
 
   book!:Livro 
 
@@ -33,10 +35,11 @@ export class LoanCreateComponent implements OnInit{
   saveLoan():void{
     const id = this.activedRouter.snapshot.paramMap.get('idBook');
     this.loanService.saveLoan(id!,this.loan).subscribe(() => {
-      this.loanService.showMensage('loan created')
+      this.exceptions.showMensage('livro emprestado','operacao bem sucedida!','toast-sucess')
       this.router.navigate(['/'])
     })
   }
+  
   cancel():void{
     this.router.navigate(['/'])
   }

@@ -40,7 +40,7 @@ export class LoginService {
   obterPerfil():Observable<any> {
     return this.http.get<any>(`${this.baseUrl}orders`).pipe(
       map(obj => obj),
-        catchError(e => this.exceptions.tokenFailed(e)) 
+        catchError(e => this.exceptions.throwException(e)) 
     );
   }
 

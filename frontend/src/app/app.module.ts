@@ -22,6 +22,7 @@ import { LogInterceptor }from './resources/services/LogInterceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChangePasswordComponent } from './component/user/change-password/change-password.component';
+import { CreateUserComponent } from './component/user/create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ChangePasswordComponent } from './component/user/change-password/change
     LoanComponent,
     LoanCreateComponent,
     LoginComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-6 text_login">
+
+                <div>
+                        <div class="pb-2 mt-4 mb-4 border-bottom">
+                            <h2>cadastrar usuário</h2>
+                        </div>
+                        <span *ngIf="confirmPasswordMethod() ; else differentPassword"></span>
+                       
+                        <form>    
+                            <div class="form-group">
+                                <label for="login">login</label>
+                                <input type="text" class="form-control" [(ngModel)]="user.username" name="username">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="titulo">senha</label>
+                                <input type="password" class="form-control" [(ngModel)]="user.password" name="password">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="titulo">confirmar senha</label>
+                                <input type="password" class="form-control" [(ngModel)]="confirmPassword" name="confirmPassword">
+                            </div>
+                            
+                            <button type="submit" class="btn btn btn-dark mr-3" (click)="createUser()">Criar</button>
+                            <button type="button" class="btn btn btn-dark" (click)="cancel()" >Cancelar</button>
+                        </form>
+                </div>
+
+                <ng-template #differentPassword >
+                    <p class="text-danger">senhas diferentes</p>
+                </ng-template>
+        </div>
+    </div>
+</div>

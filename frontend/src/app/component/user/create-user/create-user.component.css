@@ -1,0 +1,12 @@
+.text_login{
+	height: 700px;
+	display: flex;
+    align-items: center;
+	padding: 40px;
+}
+
+.form-control{
+	background-color: rgba(9, 9, 9, 0.587);
+	color: white;
+	border: 1px solid rgb(33, 44, 33);
+}

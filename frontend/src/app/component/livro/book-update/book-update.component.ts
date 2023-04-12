@@ -1,6 +1,7 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ExceptionsService } from 'src/app/resources/services/exceptions.service';
 import { Livro } from '../livro.model';
 import { LivroService } from '../livro.service';
 
@@ -11,7 +12,7 @@ import { LivroService } from '../livro.service';
 })
 export class BookUpdateComponent implements OnInit{
 
-  constructor(private livroService:LivroService,private activeRouter:ActivatedRoute,private router:Router){}
+  constructor(private livroService:LivroService,private activeRouter:ActivatedRoute,private router:Router,private exceptions:ExceptionsService){}
 
   livro!:Livro
   statusBook:string[] = ['lido','ler'];
@@ -25,7 +26,7 @@ export class BookUpdateComponent implements OnInit{
 
   update():void{
     this.livroService.update(this.livro).subscribe(() => {
-      this.livroService.showMensage('produto atualizado')
+      this.exceptions.showMensage('produto atualizado','operação bem sucedida!','toast-sucess')
       this.router.navigate([''])
     })
   }
