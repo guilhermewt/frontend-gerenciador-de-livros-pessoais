@@ -7,9 +7,7 @@
 * layout
 * service
 
-'fizemos todo o processo de recuperar senha,acertado a exception, falta terminar para os outros components lancar com esta padrao
-'nao estamos conseguindo salvar usuario ao se cadastrar'
-eu acho o interceptor esta enviando o token
+* layout mais transparent,responsivel,livros capa
 
 (cadastro de cliente)
 

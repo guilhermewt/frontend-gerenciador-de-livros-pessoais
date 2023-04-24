@@ -2,7 +2,6 @@ import { HttpBackend, HttpClient, HttpErrorResponse} from '@angular/common/http'
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable,EMPTY,map,catchError } from 'rxjs';
-import { EMPTY_OBSERVER } from 'rxjs/internal/Subscriber';
 import { tap } from 'rxjs/operators';
 import { RequestLogin } from '../models/requestLogin';
 import { responseLogin } from '../models/responseLogin';
@@ -21,8 +20,7 @@ export class LoginService {
   constructor(private handler: HttpBackend,private http:HttpClient,private authService:AuthService,private router:Router,private exceptions:ExceptionsService) { 
      this.httpClient = new HttpClient(handler);
   }
-
-  
+ 
   public doLogin(requestLogin:RequestLogin):void{
     console.log(requestLogin)
     this.httpClient.post<responseLogin>(`${this.baseUrl}login`,requestLogin)
@@ -34,7 +32,6 @@ export class LoginService {
         sessionStorage.setItem('token',data.token)
         this.router.navigate([''])
       })
-
   }
 
   obterPerfil():Observable<any> {

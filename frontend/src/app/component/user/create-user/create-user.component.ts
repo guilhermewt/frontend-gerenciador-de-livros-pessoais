@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { EMPTY } from 'rxjs';
 import { user } from 'src/app/resources/models/user';
 import { ExceptionsService } from 'src/app/resources/services/exceptions.service';
+import { LoginService } from 'src/app/resources/services/login.service';
 import { UserDomainService } from 'src/app/resources/services/user-domain.service';
 
 @Component({
@@ -13,9 +14,11 @@ import { UserDomainService } from 'src/app/resources/services/user-domain.servic
 export class CreateUserComponent {
 
   user:user = {
-    name:'',
+    name:'test',
     username:'',
-    password:''
+    password:'',
+    phone:'test',
+    email:'email@'
   }
 
   confirmPassword:string = ''

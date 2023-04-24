@@ -27,8 +27,7 @@ export class UserDomainService {
 
   createUserService(user:user):Observable<user>{
     var url = `${this.baseUrl}userdomains/saveuserdomain`
-   return  this.http.post<user>(url,user);
+   return  this.httpClient.post<user>(url,user);
   }
-
 
 }
