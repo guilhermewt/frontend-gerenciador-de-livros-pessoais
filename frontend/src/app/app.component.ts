@@ -9,7 +9,7 @@ import { AuthService } from './resources/services/auth.service';
 export class AppComponent implements OnInit{
   title = 'frontend';
 
-  showMenu:Boolean = false
+  showMenu:Boolean = true
   
   constructor(private authService:AuthService){ }
 

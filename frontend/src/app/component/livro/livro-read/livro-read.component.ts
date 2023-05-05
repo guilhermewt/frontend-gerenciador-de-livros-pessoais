@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LoginService } from 'src/app/resources/services/login.service';
 import { Livro } from '../livro.model';
 import { LivroService } from '../livro.service';
+import { AuthService } from 'src/app/resources/services/auth.service';
 
 @Component({
   selector: 'app-livro-read',
@@ -12,7 +13,7 @@ import { LivroService } from '../livro.service';
 export class LivroReadComponent implements OnInit{
 
 
-  constructor(private livroService:LivroService,private router:Router,private loginService:LoginService) { }
+  constructor(private livroService:LivroService,private router:Router,private loginService:LoginService,private authService:AuthService) { }
 
   page:number = 1;
   bookFromDataBase!:Livro[];
@@ -22,7 +23,7 @@ export class LivroReadComponent implements OnInit{
   bookToSearch!:string
 
   statusBook:string[] = ['todos','lido','ler','lendo','emprestado']
-  statusToFilter!:string
+  statusToFilter:string = this.statusBook[0]
   filteredBooks!:Livro[]
   
   ngOnInit(): void {
@@ -67,6 +68,11 @@ export class LivroReadComponent implements OnInit{
     this.bookToShow = this.bookFromDataBase.filter((books) => {
       return books.titulo.toLocaleLowerCase().includes(value)
     })
+  }
+
+  logout():void{
+    this.authService.clear();
+    this.router.navigate(['/login'])
   }
   
   // searchBook():void{

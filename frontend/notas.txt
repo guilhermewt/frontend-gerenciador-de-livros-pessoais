@@ -1,15 +1,13 @@
 ==========front end==============
 
-(configurar a recuperacao de senha)
+(configurar a recuperacao de senha) layout botao cancelar
 
-* usuario 
-* roteamento
-* layout
-* service
-
-* layout mais transparent,responsivel,livros capa
+* responsivel dos fontsize-title e buttons(jiophone),livros capa
 
 (cadastro de cliente)
+
+* pegar imagens da amazon
+* fechar seguranca
 
 
 ==============backend=============

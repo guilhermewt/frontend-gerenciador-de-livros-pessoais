@@ -15,7 +15,7 @@ import { CreateUserComponent } from './component/user/create-user/create-user.co
 const routes: Routes = [
   {
     path:'',
-   canActivate:[AuthGuardService],
+   
     component: LivroCrudComponent
   },
   {

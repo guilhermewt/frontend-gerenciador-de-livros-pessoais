@@ -9,12 +9,13 @@
     flex-direction: row;
     justify-content: space-around;
     flex-flow: wrap;
+    background-color: rgba(2, 2, 2, 0.664);
 }
 
 
 .livro{
-    width: 230px;
-    height: 275px;
+    width: 240px;
+    min-height: 340px;
     margin: 20px 20px 60px 20px;
     box-sizing: border-box;
     color:white;
@@ -30,17 +31,55 @@
     margin-right: 5px;
  }
 
+.my_input{
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #737f8b;
+    background-color: black;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+
+.bg-dark{
+    background-color: #060101be !important;
+}
+
+.btn{
+    color:white;
+}
+
+.dropdown-menu{
+    background-color: black;
+}
+
+.dropdown-item{
+   color: white;
+}
+
+.dropdown-item:hover{
+   color: white;
+   background-color: rgb(44, 42, 42);
+}
+
+
+
 /*===========livro card==============*/
 
 .img-livro > img{
-    width:230px;
+    max-width:230px;
      height:190px;
      margin: 0;
      border:1px solid black;
 }
 
 .titulo{
-    width: 230px;
+    max-width: 230px;
     height: 50px;
     display: flex;
     align-items: center;
@@ -62,6 +101,19 @@
     margin-top: 10px;
 }
 
+.button_black{
+    background-color: black;
+    display: block!important;
+}
+
+.button_red{
+    background-color: rgba(85, 24, 24, 0.9);
+}
+
+.button_blue{
+    background-color: rgba(10, 10, 79, 0.859);
+}
+
 /*=========paginacao=========*/
 
 .paginacao{
@@ -76,8 +128,8 @@
 
 
 
-@media screen and (max-width:767px){
-    .img-livro > img{
+ @media screen and (max-width:767px){
+    /* .img-livro > img{
         width:180px;
         height:140px;
     }    
@@ -100,14 +152,43 @@
 
     .paginacao{
         font-size: 13px;
-    }
+    } */
+    
 
+    
+    
 
-}
+} 
 
-@media screen and (max-width:280px){
+@media screen and (max-width:300px){
     .paginacao{
         font-size: 10px;
+    }
+
+    .estrutura{
+        display: block;
+    }
+    .img-livro > img{
+        max-width:180px;
+        height:140px;
+    } 
+
+    .buttons > button{
+        display: block;
+        width: 100%;
+        margin: 0;
+    }
+
+    .livro{
+        width: 100%;
+        display: block;
+        margin-top: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .my_input{
+        max-width: 150px;
     }
 }
 
