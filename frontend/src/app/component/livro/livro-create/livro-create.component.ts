@@ -13,6 +13,8 @@ import { apiBooksObject } from 'src/app/resources/models/apiBooksObject';
   styleUrls: ['./livro-create.component.css']
 })
 export class LivroCreateComponent implements OnInit{
+
+  
   
   livro:Livro = {
     authors: '',
