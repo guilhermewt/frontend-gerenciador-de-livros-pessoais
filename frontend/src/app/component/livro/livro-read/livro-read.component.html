@@ -60,11 +60,11 @@
         <div class="livro text-center" *ngFor="let Livro of bookToShow | paginate: { itemsPerPage: itemsPerPage, currentPage: page }" style="border: 1px solid blue
         ">
             <div class="img-livro">
-                <img src="assets/img/book.png" class="rounded"alt="">
+                <img src="http://books.google.com/books/content?id=6z7G5VGXnScC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" class="rounded"alt="">
             </div>
             
             <div class="titulo">            
-                <h3>{{ Livro.titulo }}</h3> 
+                <h3>{{ Livro.title }}</h3> 
             </div>     
             
             <div class="buttons">

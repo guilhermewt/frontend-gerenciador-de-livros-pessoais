@@ -8,7 +8,7 @@
             
             <div class="form-group">
                 <label for="titulo">titulo</label>
-                <input type="text" class="form-control" [(ngModel)]="livro.titulo" name="titulo">
+                <input type="text" class="form-control" [(ngModel)]="livro.title" name="title">
             </div>
 
             <div class="form-group">
@@ -17,9 +17,31 @@
                 </select>
                
             </div>
+
+            <div class="form-group">
+                <label for="author">author</label>
+                <input type="text" class="form-control" [(ngModel)]="author" name="author">
+               
+            </div>
             
-            <button type="submit" class="btn btn-primary" (click)="salvar()">salvar</button>
+            <button type="submit" class="btn btn-primary" (click)="livroApi()" >pesquisar</button>
             <button type="button" class="btn btn-danger" (click)="cancelar()">cancelar</button>
+           
         </form>
     </div>
+
+    <div class="estrutura" style="border: 1px solid red;">
+       
+        <div class="livro text-center" *ngFor="let livro of livroSearch" style="border: 1px solid blue
+        ">
+            <div class="img-livro" >
+                <img src="{{livro.volumeInfo.imageLinks.thumbnail}}" class="rounded"alt="" >
+            </div>
+            
+            <div class="titulo">            
+                <h3>{{ livro.volumeInfo.title }}</h3> 
+            </div> 
+            <button type="submit" class="btn btn-secondary"  (click)="definirBook(livro.id)">selecionar</button>    
+            
+        </div>
 </div>

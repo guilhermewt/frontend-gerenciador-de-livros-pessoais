@@ -66,7 +66,7 @@ export class LivroReadComponent implements OnInit{
     const value = target.value
 
     this.bookToShow = this.bookFromDataBase.filter((books) => {
-      return books.titulo.toLocaleLowerCase().includes(value)
+      return books.title.toLocaleLowerCase().includes(value)
     })
   }
 

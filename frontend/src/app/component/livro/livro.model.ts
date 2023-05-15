@@ -1,5 +1,11 @@
-export interface Livro{
-    id?:number,
-    titulo:string,
-    status:string
+export class Livro{
+    id?:number
+    title:string = ''
+    status:string = ''
+    authors:string = ''
+    imageLinks!:image
+}
+
+export class image{
+    thumbnail:string = ''
 }
