@@ -14,24 +14,26 @@ import { apiBooksObject } from 'src/app/resources/models/apiBooksObject';
 })
 export class LivroCreateComponent implements OnInit{
 
-  
-  
-  livro:Livro = {
-    authors: '',
-    status: '',
-    title: '',
-    imageLinks: new image
-  }
-
   image:image = {
     thumbnail: 'http://books.google.com/books/content?id=Pxp9DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'
   }
 
+  statusBook:string[] = ['lido','ler','lendo']
+
+  livro:Livro = {
+    status: this.statusBook[0],
+    title: '',
+    imageLinks: new image,
+    authors: [],
+    description: ''
+  }
+
+  title:string = ''
+  description:string = ''
+  author:string = ''
+
   livroSearch!:items[]
 
-  author!:string
-
-   statusBook:string[] = ['lido','ler','lendo']
 
    private httpClient: HttpClient;
 
@@ -54,7 +56,6 @@ export class LivroCreateComponent implements OnInit{
   }
 
   livroApi():void{
-   image:image
     this.buscarLivro().subscribe((data) => {
       for(var i = 0; i < data.items.length; i++){
             if(data.items[i].volumeInfo.imageLinks == null){
@@ -65,27 +66,26 @@ export class LivroCreateComponent implements OnInit{
          console.log(data.items)
 
       this.livroSearch = data.items.filter(x => x.volumeInfo)
-      console.log(this.livroSearch[1].volumeInfo.title)
-      
-      
+          
      })
 
-    // this.httpClient.get<any>("http://localhost:3001/livro").subscribe(data => console.log(data))
+
   }
   buscarLivro():Observable<apiBooksObject>{
     return this.httpClient.get<apiBooksObject>(`https://www.googleapis.com/books/v1/volumes?q=${this.livro.title}&key=AIzaSyBDvqlrmSgJEQ5NUQE_3qOwPuhlDZoorMk`) 
   }
 
-  definirBook(id:string):void{
-   
+  definirBook(id:string):void{  
     const indice:number = this.livroSearch.findIndex((x) => x.id === id) 
-    console.log(indice)
-
     this.livro= this.livroSearch[indice].volumeInfo
-    
- 
+    this.showBook()
   }
 
-  //estamos pegando o id do livro e vendo em qual indice esta e com base neste indice definimos o nosso livro
+  showBook():void{
+    this.title = this.livro.title
+    this.author = this.livro.authors[0]
+    this.description = this.livro.description
+   
+  }
 
 }

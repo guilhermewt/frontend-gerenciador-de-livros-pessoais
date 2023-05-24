@@ -1,3 +1,25 @@
 button{
     margin:10px 10px 10px 0px;
 }
+
+.card{
+    background-color: #0c0c0ce8;
+    font-size: 12px;
+    display: block;
+    color: #fff;
+}
+
+.card-title{
+    font-size: 15px;
+}
+
+.card-body{
+    padding: 0;
+}
+
+.reduceText{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+}

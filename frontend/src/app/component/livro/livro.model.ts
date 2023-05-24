@@ -2,8 +2,9 @@ export class Livro{
     id?:number
     title:string = ''
     status:string = ''
-    authors:string = ''
+    authors:string[] = []
     imageLinks!:image
+    description:string = ''
 }
 
 export class image{
