@@ -18,7 +18,7 @@ export class LivroCreateComponent implements OnInit{
     thumbnail: 'http://books.google.com/books/content?id=Pxp9DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'
   }
 
-  statusBook:string[] = ['lido','ler','lendo']
+  statusBook:string[] = ['Ler','Lido','Lendo']
 
   livro:Livro = {
     status: this.statusBook[0],
@@ -33,8 +33,6 @@ export class LivroCreateComponent implements OnInit{
   author:string = ''
 
   livroSearch!:items[]
-
-
    private httpClient: HttpClient;
 
   constructor(private livroService:LivroService,private router:Router,private handler: HttpBackend,private http:HttpClient){
@@ -77,7 +75,8 @@ export class LivroCreateComponent implements OnInit{
 
   definirBook(id:string):void{  
     const indice:number = this.livroSearch.findIndex((x) => x.id === id) 
-    this.livro= this.livroSearch[indice].volumeInfo
+    this.livro=this.livroSearch[indice].volumeInfo
+    this.livro.status = this.statusBook[0]
     this.showBook()
   }
 
@@ -85,7 +84,6 @@ export class LivroCreateComponent implements OnInit{
     this.title = this.livro.title
     this.author = this.livro.authors[0]
     this.description = this.livro.description
-   
   }
 
 }

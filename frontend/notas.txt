@@ -6,8 +6,8 @@
 
 (cadastro de cliente)
 
-* pegar imagens da amazon
-* fechar seguranca
+* colocar o livro no modelo do backend para salvar
+* layour do livro create
 
 
 ==============backend=============
