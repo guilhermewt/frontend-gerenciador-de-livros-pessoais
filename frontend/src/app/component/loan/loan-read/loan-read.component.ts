@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Livro } from '../../livro/livro.model';
-import { LivroService } from '../../livro/livro.service';
-import { LoanService } from '../loan-service.service';
-import { Loan } from './loan.model';
+import { Book } from '../../book/books-model/Book.model';
+import { BookService } from '../../book/book-services/book.service';
+import { LoanService } from '../loan-service/loan-service.service';
+import { Loan } from '../loan.model';
 
 @Component({
   selector: 'app-loan',
@@ -12,25 +12,33 @@ import { Loan } from './loan.model';
 })
 export class LoanComponent implements OnInit{
 
-  constructor(private bookService:LivroService,private router:Router,private activedRouter:ActivatedRoute,private loanService:LoanService){}
+  constructor(private bookService:BookService,private router:Router,private activedRouter:ActivatedRoute,private loanService:LoanService){}
 
-  book!:Livro 
+  book!:Book
 
   loan:Loan = {
-    startOfTheLoan:'20/01/2023',
-    endOfTheLoan:'25/01/2023',
-    lendBookTo:'agnaldo'
+    bookId:'',
+    startOfTheLoan:'',
+    endOfLoan:'',
+    lendBookTo:''
   }
 
   ngOnInit(): void {
     const id = this.activedRouter.snapshot.paramMap.get('id');
     this.bookService.readById(id!).subscribe(book => {
       this.book = book
+      this.getLoan(id!);
     })
+  }
 
-    // this.loanService.getLoanByBookId(this.book.id!).subscribe(loan => {
-    //   this.loan = loan;
-    // })
+  getLoan(id:string):void{
+    if(this.book.statusBook == 'emprestado'){
+      this.loanService.getLoanByBookId(this.book.id!).subscribe(loan => {
+        this.loan = loan;
+      })
+      
+    }
+
   }
 
 }

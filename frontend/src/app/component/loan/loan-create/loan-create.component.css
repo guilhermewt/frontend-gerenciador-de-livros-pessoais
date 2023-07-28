@@ -6,3 +6,22 @@
 button{
   margin-right: 10px;
 }
+
+input.form-control{
+  background-color: #0c0c0cb4;
+  border-color: #42484e;
+  color:white
+}
+
+.button_blue{
+  background-color: rgba(10, 10, 79, 0.859);
+  color:white;
+}
+
+.btn-danger{
+  background-color: rgba(216, 25, 25, 0.738);
+}
+
+.btn-danger:hover{
+  background-color: rgba(91, 26, 26, 0.738);
+}

@@ -1,27 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LivroCrudComponent } from './views/livro-crud/livro-crud.component'
-import { LivroCreateComponent } from './component/livro/livro-create/livro-create.component'
-import { BookUpdateComponent } from './component/livro/book-update/book-update.component';
-import { LivroRemoveComponent } from './component/livro/livro-remove/livro-remove.component';
+import { BookReadComponent } from './component/book/book-read/book-read.component'; 
+import { BookCreateComponent } from './component/book/book-create/book-create.component'
+import { BookUpdateComponent } from './component/book/book-update/book-update.component';
+import { BookRemoveComponent } from './component/book/book-remove/book-remove.component';
 import { LoanComponent } from './component/loan/loan-read/loan-read.component'
 import { LoanCreateComponent } from './component/loan/loan-create/loan-create.component';
 import { LoginComponent } from './component/login/login.component';
-import { AuthService } from './resources/services/auth.service';
-import { AuthGuardService } from './resources/services/auth-guard.service';
+import { AuthService } from './component/auth/auth-services/auth.service';
+import { AuthGuardService } from './component/auth/auth-services/auth-guard.service';
 import { ChangePasswordComponent } from './component/user/change-password/change-password.component'
 import { CreateUserComponent } from './component/user/create-user/create-user.component'
 
 const routes: Routes = [
   {
     path:'',
-   
-    component: LivroCrudComponent
+    canActivate:[AuthGuardService],
+    component: BookReadComponent
   },
   {
     path:'create',
-   
-    component:LivroCreateComponent
+    canActivate:[AuthGuardService],
+    component:BookCreateComponent
   },
   {
     path:'updatebook/:id',
@@ -31,7 +31,7 @@ const routes: Routes = [
   {
     path:'deletebook/:id',
     canActivate:[AuthGuardService],
-    component:LivroRemoveComponent
+    component:BookRemoveComponent
   },
   {
     path:'loan/:id',

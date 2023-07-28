@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="pb-2 mt-4 mb-4 border-bottom">
+        <h2>Deletar livro</h2>
+    </div>
+
+    <div *ngIf="book">
+        <div class="card mb-3 pt-2 m-auto" style="max-width: 540px;">
+          <div class="row no-gutters">
+            <div class="col-md-4 ">
+              <img src="{{book.imageLink}}" class="ml-4" alt="...">
+              <h5 class="card-title mt-2 ml-4"[innerText]="book.authors" ></h5>
+              <h3 class="ml-4"[innerText]="book.statusBook"></h3>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title" [innerText]="book.title"></h5>
+                <p class="card-text" style="overflow: auto; height:200px" [innerText]="book.description"></p>
+              </div>
+            </div>
+          </div>
+        </div>   
+        
+        <div class="m-auto button-config"> 
+         <button type="submit" class="btn btn-danger" (click)="deleteBook()">deletar</button>
+         <button type="button" class="btn btn-warning" (click)="cancel()">cancelar</button>
+        </div>
+      </div>
+
+      
+    
+</div>
+
+<!--criei um component create,service,routing,estilizacao,
+                criar os botoes
+            criamos a funcionalidade salvar
+            e criamos no readbyid no service
+            implementacao do editar
+            (falta implementa o remove)
+            -->

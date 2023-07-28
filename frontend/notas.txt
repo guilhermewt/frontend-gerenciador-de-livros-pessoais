@@ -4,10 +4,18 @@
 
 * responsivel dos fontsize-title e buttons(jiophone),livros capa
 
-(cadastro de cliente)
+* arrumar layout dos formularios para transparente e os botoes mais escuros
 
-* colocar o livro no modelo do backend para salvar
-* layour do livro create
+* arrumar layout ok
+
+* layout dos emprestimo tentar fazer um modal ok
+* salvar um loan ta ok so precisa criar condicao para mudar loan read assim que salva ok
+* filtrar por nome do author (pesquisar)
+* filtrar por generos(select)
+* arrumar services para se comunicar com api real
+* criar estatistica
+
+(cadastro de cliente)
 
 
 ==============backend=============

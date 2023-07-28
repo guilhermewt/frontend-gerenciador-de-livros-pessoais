@@ -6,18 +6,17 @@ import { AppComponent } from './app.component';
 import { DataTablesModule } from "angular-datatables";
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { LivroCrudComponent } from './views/livro-crud/livro-crud.component';
-import { LivroReadComponent } from './component/livro/livro-read/livro-read.component';
+import { BookReadComponent } from './component/book/book-read/book-read.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { LivroCreateComponent } from './component/livro/livro-create/livro-create.component';
-import { BookUpdateComponent } from './component/livro/book-update/book-update.component';
-import { LivroRemoveComponent } from './component/livro/livro-remove/livro-remove.component';
+import { BookCreateComponent } from './component/book/book-create/book-create.component';
+import { BookUpdateComponent } from './component/book/book-update/book-update.component';
+import { BookRemoveComponent } from './component/book/book-remove/book-remove.component';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBars, faCoffee, faPen, faTrash, faTrashCan, faUser, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { LoanComponent } from './component/loan/loan-read/loan-read.component';
 import { LoanCreateComponent } from './component/loan/loan-create/loan-create.component';
 import { LoginComponent } from './component/login/login.component';
-import { LogInterceptor }from './resources/services/LogInterceptor';
+import { LogInterceptor }from './component/login/login-services/LogInterceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChangePasswordComponent } from './component/user/change-password/change-password.component';
@@ -26,11 +25,10 @@ import { CreateUserComponent } from './component/user/create-user/create-user.co
 @NgModule({
   declarations: [
     AppComponent,
-    LivroCrudComponent,
-    LivroReadComponent,
-    LivroCreateComponent,
+    BookReadComponent,
+    BookCreateComponent,
     BookUpdateComponent,
-    LivroRemoveComponent,
+    BookRemoveComponent,
     LoanComponent,
     LoanCreateComponent,
     LoginComponent,

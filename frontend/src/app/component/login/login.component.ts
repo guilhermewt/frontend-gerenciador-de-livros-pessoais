@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { error } from 'jquery';
-import { RequestLogin } from 'src/app/resources/models/requestLogin';
-import { responseLogin } from 'src/app/resources/models/responseLogin';
-import { LoginService } from 'src/app/resources/services/login.service';
+import { RequestLogin } from 'src/app/component/login/login-models/requestLogin.model';
+import { responseLogin } from 'src/app/component/login/login-models/responseLogin.model';
+import { LoginService } from 'src/app/component/login/login-services/login.service';
 import { Router } from '@angular/router'
 
 @Component({

@@ -1,6 +1,5 @@
-p{
-    margin: 0px;
-    padding: 0px;
+button{
+    margin:10px 10px 10px 0px;
 }
 
 .card{
@@ -36,14 +35,4 @@ select.form-control{
     background-color: #0c0c0cb4;
     border-color: #42484e;
     color:white  
-}
-
-.button_blue{
-    background-color: rgba(10, 10, 79, 0.859);
-    color:white;
-}
-
-.style-modal{
-    background-color: #0c0c0ce8;
-    color: #fff;
 }

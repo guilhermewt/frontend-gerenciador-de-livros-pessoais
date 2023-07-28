@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { EMPTY } from 'rxjs';
-import { user } from 'src/app/resources/models/user';
-import { ExceptionsService } from 'src/app/resources/services/exceptions.service';
-import { LoginService } from 'src/app/resources/services/login.service';
-import { UserDomainService } from 'src/app/resources/services/user-domain.service';
+import { user } from 'src/app/component/user/user-models/user.model';
+import { ExceptionsService } from 'src/app/component/exception/exception-services/exceptions.service';
+import { LoginService } from 'src/app/component/login/login-services/login.service';
+import { UserDomainService } from 'src/app/component/user/user-services/user-domain.service';
 
 @Component({
   selector: 'app-create-user',
@@ -17,8 +17,7 @@ export class CreateUserComponent {
     name:'test',
     username:'',
     password:'',
-    phone:'test',
-    email:'email@'
+    email:'well@mail'
   }
 
   confirmPassword:string = ''

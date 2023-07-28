@@ -1,30 +1,65 @@
 <div class="container">
-   <button type="button" class="btn btn-primary" routerLink="/">voltar</button>
+
+   <div class="pb-2 mt-4 mb-4 border-bottom">
+      <h2>Emprestimo do livro</h2>
+  </div>
+
+   <button type="button" class="btn button_blue mb-2" routerLink="/">voltar</button>
     <div class="row">
       
-        <div class="col-sm-6" style="border: 1px solid blue;" ngFor="let book of book">
-          <div style="border: 1px solid red; text-align: center;" >
-           
-           <h3>{{book.title}}</h3>
-            <p>ano da publicação: 21/01/2023</p>
-            <p>status: {{book.status}}</p>
-          </div>  
-        </div>
+      <div class="col-sm-6" *ngIf="book">
+         <div class="card mb-3 pt-2" style="max-width: 540px;">
+           <div class="row no-gutters">
+             <div class="col-md-4 ">
+               <img src="{{book.imageLink}}" class="ml-4" alt="...">
+               <h5 class="card-title mt-2 ml-4"[innerText]="book.authors" ></h5>
+               <h3 class="ml-4"[innerText]="book.statusBook"></h3>
+             </div>
+             <div class="col-md-8">
+               <div class="card-body">
+                 <h5 class="card-title" [innerText]="book.title"></h5>
+                 <p class="card-text" style="overflow: auto; height:200px" [innerText]="book.description"></p>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
 
-        <div class="col-sm-6" ngFor="let loan of loan" ngFor="let book of book" style="border: 1px solid red; text-align: center;">
+        <div class="col-sm-6" *ngIf="book" ngFor="let loan of loan" ngFor="let book of book" style="text-align: center;">
 
-           <div *ngIf="book.status == 'emprestado'">
+           <div *ngIf="book.statusBook == 'emprestado'">
               <h3>emprestimo</h3>
-              <p>data do emprestimo: {{loan.startOfTheLoan}}</p>
-              <p>data da devolução do emprestimo:{{loan.endOfTheLoan}}</p>
+              <p>data do emprestimo: {{loan.startOfTheLoan | date}}</p>
+              <p>data da devolução:{{loan.endOfLoan | date}}</p>
               <p>emprestado para: {{loan.lendBookTo}}</p>
            </div>
 
-           <div *ngIf="book.status != 'emprestado'">
+           <div *ngIf="book.statusBook != 'emprestado'">
             <h3>emprestar livro</h3>
-            <button type="submit" class="btn btn-primary" routerLink="/loan-create/{{book.id}}">emprestar</button>
+            <button type="button" class="btn button_blue" data-toggle="modal" data-target="#loan-create">emprestar</button>
            </div>
 
         </div>
+
+        <form class="modal fade" id="loan-create" ngbModal>
+          <div class="modal-dialog">
+            <div class="modal-content style-modal">
+              
+              <!-- cabecalho -->
+              <div class="modal-header"> 
+                <button type="button" class="close" data-dismiss="modal">
+                  <span>&times;</span>
+                </button>
+              </div>
+  
+              <!-- corpo -->
+              <div class="modal-body"> 
+               <app-loan-create></app-loan-create>
+              </div>
+  
+            </div>
+          </div>
+  
+        </form>
 
     </div>
