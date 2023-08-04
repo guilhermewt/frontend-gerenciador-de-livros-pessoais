@@ -27,14 +27,14 @@
 
         <div class="col-sm-6" *ngIf="book" ngFor="let loan of loan" ngFor="let book of book" style="text-align: center;">
 
-           <div *ngIf="book.statusBook == 'emprestado'">
+           <div *ngIf="book.statusBook == 'EMPRESTADO'">
               <h3>emprestimo</h3>
               <p>data do emprestimo: {{loan.startOfTheLoan | date}}</p>
               <p>data da devolução:{{loan.endOfLoan | date}}</p>
-              <p>emprestado para: {{loan.lendBookTo}}</p>
+              <p>emprestado para: {{loan.addressee}}</p>
            </div>
 
-           <div *ngIf="book.statusBook != 'emprestado'">
+           <div *ngIf="book.statusBook != 'EMPRESTADO'">
             <h3>emprestar livro</h3>
             <button type="button" class="btn button_blue" data-toggle="modal" data-target="#loan-create">emprestar</button>
            </div>

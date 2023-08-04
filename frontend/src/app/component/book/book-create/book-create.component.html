@@ -9,13 +9,13 @@
             
             <div class="form-group">
                 <label for="titulo">titulo</label>
-                <input type="text" class="form-control" [(ngModel)]="book.title" name="title">
+                <input type="text" class="form-control" [(ngModel)]="bookToApi.title" name="title">
+                <button type="submit" class="btn btn-dark mb-1" (click)="searchBookInApi()" data-toggle="modal" data-target="#janela">Buscar</button>
             </div>
 
             <div class="form-group mb-1">
                 <label for="author">author</label>
-                <input type="text" class="form-control" [(ngModel)]="book.authors[0]" name="authors">
-                <button type="submit" class="btn btn-dark mb-1" (click)="searchBookInApi()" data-toggle="modal" data-target="#janela">Buscar</button>
+                <input type="text" class="form-control" [(ngModel)]="bookToApi.authors" name="authors">
             </div>
 
             <div class="form-group col-4 col-sm-4 pl-0">
@@ -23,7 +23,24 @@
               <select [(ngModel)]="book.status" name="status"  class="form-control">
                   <option  *ngFor="let statusBook of statusBook" [ngValue]="statusBook">{{ statusBook }}</option>
               </select>
-          </div>
+
+              <label for="Genero" class="mb-0">Genero</label>
+                <select [(ngModel)]="bookToApi.genrers[0]" name="genrers"  *ngIf="genrersFromApi" class="form-control">
+                    <option  *ngFor="let genrers of genrersFromApi" [ngValue]="genrers">
+                      {{ genrers.name }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+              <label>Descrição</label>
+              <textarea class="form-control" [(ngModel)]="bookToApi.description" name="bookToApi.description" (input)="countWords()" [disabled]="numWords >= 300">
+
+              </textarea>
+              <p style="font-size: 10px;">
+                {{numWords}} palavra(s) digitada(s) de 250 máx.
+              </p>
+            </div>
             
             <button type="submit" class="btn btn-dark" (click)="save()">salvar</button>
             <button type="button" class="btn btn-danger" (click)="cancel()">cancelar</button>
@@ -32,17 +49,17 @@
   
     </div>
 
-    <div class="col-sm-6" *ngIf="title != ''">
+    <div class="col-sm-6" *ngIf="showBook">
       <div class="card mb-3" style="max-width: 540px;">
         <div class="row no-gutters">
           <div class="col-md-4 ">
-            <img src="{{book.imageLinks.thumbnail}}" class="ml-4" alt="...">
-            <h5 class="card-title mt-2 ml-4"[innerText]="author" ></h5>
+            <img src="{{bookToApi.imageLink}}" class="ml-4" alt="...">
+            <h5 class="card-title mt-2 ml-4"[innerText]="bookToApi.authors" ></h5>
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title" [innerText]="title"></h5>
-              <p class="card-text" style="overflow: auto; height:200px" [innerText]="description"></p>
+              <h5 class="card-title" [innerText]="bookToApi.title"></h5>
+              <p class="card-text" style="overflow: auto; height:200px" [innerText]="bookToApi.description"></p>
             </div>
           </div>
         </div>

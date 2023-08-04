@@ -35,6 +35,17 @@
                     <option *ngFor="let statusBook of statusBook" [ngValue]="statusBook" class="dropdown-item" >{{ statusBook }}</option>
                </select>
               </div>
+
+              <form class="form-inline my-2 my-lg-0">
+                <input class="my_input mr-sm-2" type="text" placeholder="autor" aria-label="Search" [(ngModel)]="authorSearch" name="authorSearch">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="filterByAuthor()">Search</button>
+              </form>
+
+              <div class="dropdown">
+                <select [(ngModel)]="genrerToSearch" name="genrerToSearch" class="my_input" (click)="filterByGenrer()">
+                    <option *ngFor="let genrers of genrersFromApi" [ngValue]="genrers" class="dropdown-item" >{{ genrers.name }}</option>
+               </select>
+              </div>
             
           </ul>
           

@@ -2,15 +2,23 @@ export class Book{
     id?:number
     title:string = ''
     statusBook:string = ''
-    authors!:string
-    imageLink!:string
+    authors:string = ''
+    imageLink:string = ''
     description:string = ''
+    genrers:Genrers[] = []
 
-    constructor(title:string, statusBook:string,authors:string,imageLinks:string,description:string){
+    constructor(title:string, statusBook:string,authors:string
+        ,imageLinks:string,description:string,genrers:Genrers[]){
         this.title = title;
-        this.statusBook = status;
+        this.statusBook = statusBook;
         this.authors = authors;
         this.imageLink = imageLinks;
         this.description = description;
+        this.genrers = genrers
     }
+}
+
+export class Genrers{
+    id?:number
+    name:string = ''
 }

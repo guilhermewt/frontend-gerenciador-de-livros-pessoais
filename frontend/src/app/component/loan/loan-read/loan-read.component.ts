@@ -20,7 +20,7 @@ export class LoanComponent implements OnInit{
     bookId:'',
     startOfTheLoan:'',
     endOfLoan:'',
-    lendBookTo:''
+    addressee:''
   }
 
   ngOnInit(): void {
@@ -32,7 +32,7 @@ export class LoanComponent implements OnInit{
   }
 
   getLoan(id:string):void{
-    if(this.book.statusBook == 'emprestado'){
+    if(this.book.statusBook == 'EMPRESTADO'){
       this.loanService.getLoanByBookId(this.book.id!).subscribe(loan => {
         this.loan = loan;
       })

@@ -22,7 +22,7 @@ export class LoanCreateComponent implements OnInit{
   loan:Loan = {
     startOfTheLoan:'',
     endOfLoan:'',
-    lendBookTo:'',
+    addressee:'',
     bookId: ''
   }
 

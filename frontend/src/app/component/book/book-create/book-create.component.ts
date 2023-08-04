@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookService } from '../book-services/book.service';
 import { ItemsBook } from '../books-model/ObjectApiBook';
-import { Book } from '../books-model/Book.model';
+import { Book, Genrers } from '../books-model/Book.model';
 import { GoogleApiService } from '../book-services/GoogleBookApi.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class BookCreateComponent implements OnInit{
     thumbnail: 'http://books.google.com/books/content?id=Pxp9DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'
   }
 
-  statusBook:string[] = ['Ler','Lido','Lendo','emprestado']
+  statusBook:string[] = ['LER','LIDO','LENDO','EMPRESTADO']
 
   book:BookApi = {
     status: this.statusBook[0],
@@ -27,26 +27,38 @@ export class BookCreateComponent implements OnInit{
     description: ''
   }
 
-  title:string = ''
-  description:string = ''
-  author:string = ''
-
   bookSearch!:ItemsBook[]
 
-  constructor(private googleBooksService:GoogleApiService ,private bookService:BookService,private router:Router){
+  genrersFromApi!:Genrers[]
+
+  bookToApi:Book = {
+    title: '',
+    authors: '',
+    description: '',
+    imageLink: '',
+    genrers: [],
+    id: 1,
+    statusBook: this.statusBook[0]
+  }
+
+  public numWords: number = 0;
+
+  showBook:Boolean = false;
+
+  constructor(private googleBooksService:GoogleApiService ,private bookService:BookService
+    ,private router:Router){
   }
 
   ngOnInit(): void {
-    
-  }
-
-  toAuthor():string{ 
-    return this.book.authors.join(' & ')
+    this.bookService.findAllGenrers().subscribe((data) =>{
+      this.genrersFromApi = data
+      this.bookToApi.genrers[0] = this.genrersFromApi[0]
+    })
   }
 
   save():void{
-    console.log(new Book(this.book.title,this.book.status,this.toAuthor(),this.book.imageLinks.thumbnail,this.book.description))
-    this.bookService.create(new Book(this.book.title,this.book.status,this.toAuthor(),this.book.imageLinks.thumbnail,this.book.description)).subscribe(() => {
+   
+    this.bookService.create(this.bookToApi).subscribe(() => {
       this.router.navigate(['/'])
     })
   }
@@ -56,7 +68,9 @@ export class BookCreateComponent implements OnInit{
   }
 
   searchBookInApi():void{
-      this.googleBooksService.getBooksApi(this.book.title).subscribe((data) => {
+      this.cleanForm();
+
+      this.googleBooksService.getBooksApi(this.bookToApi.title).subscribe((data) => {
         for(let x of data.items){
               if(x.volumeInfo.imageLinks == null){
                 x.volumeInfo.imageLinks = this.image
@@ -64,19 +78,40 @@ export class BookCreateComponent implements OnInit{
         }  
       this.bookSearch =  data.items.filter(x => x.volumeInfo);
        })
+       
   }
 
   selectBook(id:string):void{  
     const indice:number = this.bookSearch.findIndex((x) => x.id === id) 
-    this.book=this.bookSearch[indice].volumeInfo
-    this.book.status = this.statusBook[0]
-    this.showBook()
+    this.bookToApi.title = this.bookSearch[indice].volumeInfo.title
+    this.bookToApi.imageLink = this.bookSearch[indice].volumeInfo.imageLinks.thumbnail
+    this.bookToApi.authors = this.bookSearch[indice].volumeInfo.authors.join(' & ')
+    
+    this.configDescription(indice);
+    this.showBook = true;
   }
 
-  showBook():void{
-    this.title = this.book.title
-    this.author = this.book.authors[0]
-    this.description = this.book.description
+  configDescription(indice:number):void{
+    
+    if(this.bookSearch[indice].volumeInfo.description != undefined){
+      this.bookToApi.description =  this.bookSearch[indice].volumeInfo.description.slice(0, 243);
+      this.bookToApi.description += ' etc...'
+    }
+    else{
+      this.bookToApi.description =  this.bookSearch[indice].volumeInfo.description
+    }
+
+    this.numWords = this.bookToApi.description.length
+  }
+
+  countWords():void{
+    this.numWords = this.bookToApi.description.length;
+  }
+
+  cleanForm():void{
+    this.bookToApi.authors = ''
+    this.bookToApi.description = ''
+    this.bookSearch = []
   }
 
 }

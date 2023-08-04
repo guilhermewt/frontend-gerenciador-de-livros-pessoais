@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, ObservedValuesFromArray } from 'rxjs';
 import { ExceptionsService } from 'src/app/component/exception/exception-services/exceptions.service';
-import { Book } from '../books-model/Book.model';
+import { Book, Genrers } from '../books-model/Book.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +20,15 @@ export class BookService {
     );
   }
 
+  findAllGenrers():Observable<Genrers[]>{
+    return this.http.get<Genrers[]>(`${this.baseUrl}genrers/all`).pipe(
+      map(obj => obj),
+      catchError(e => this.exceptions.defaultBadException(''))
+    );
+  }
+
   create(livro:Book):Observable<Book>{
-    return this.http.post<Book>(this.baseUrl,livro).pipe(
+    return this.http.post<Book>(`${this.baseUrl}books`,livro).pipe(
       map(obj => obj),
       catchError(e => this.exceptions.defaultBadException(''))
     );
@@ -36,15 +43,33 @@ export class BookService {
   }
 
   findBookByStatus(statusBook:string):Observable<Book[]>{
-    const url = `${this.baseUrl}?status=${statusBook}`
+    const url = `${this.baseUrl}books/findbookByStatus?statusBook=${statusBook}`
     return this.http.get<Book[]>(url).pipe(
       map(obj => obj),
       catchError(e => this.exceptions.defaultBadException(''))
     );
   }
   
-  searchBook(book:string):Observable<Book[]>{
-    const url = `${this.baseUrl}/searchBook?name=${book}`
+  searchBook(title:string):Observable<Book[]>{
+    const url = `${this.baseUrl}books/findbytitle?title=${title}`
+    return this.http.get<Book[]>(url).pipe(
+      map(obj => obj),
+      catchError(e => this.exceptions.defaultBadException(''))
+    );
+  }
+
+  findBookByAuthor(author:string):Observable<Book[]>{
+    console.log(author)
+    const url = `${this.baseUrl}books/find-by-author?author=${author}`
+    return this.http.get<Book[]>(url).pipe(
+      map(obj => obj),
+      catchError(e => this.exceptions.defaultBadException(''))
+    );
+  }
+
+  findBookByGenrer(genrerName:string):Observable<Book[]>{
+    console.log(genrerName)
+    const url = `${this.baseUrl}books/find-by-genrer?genrer=${genrerName}`
     return this.http.get<Book[]>(url).pipe(
       map(obj => obj),
       catchError(e => this.exceptions.defaultBadException(''))
@@ -52,7 +77,7 @@ export class BookService {
   }
 
   update(livro:Book):Observable<Book>{
-    const url = `${this.baseUrl}/${livro.id}`;
+    const url = `${this.baseUrl}books`;
     return this.http.put<Book>(url,livro).pipe(
       map(obj => obj),
       catchError(e => this.exceptions.defaultBadException(''))

@@ -1,15 +1,16 @@
-<div class="container">
+<div class="container" *ngIf="book">
     <div class="pb-2 mt-4 mb-4 border-bottom">
         <h2>atualizar livro</h2>
     </div>
     
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6" >
             <div class="card mb-3 pt-2" style="max-width: 540px;">
               <div class="row no-gutters">
                 <div class="col-md-4 ">
                   <img src="{{book.imageLink}}" class="ml-4" alt="...">
                   <h5 class="card-title mt-2 ml-4"[innerText]="book.authors" ></h5>
+                  <h5 class="card-title mt-2 ml-4"[innerText]="book.genrers[0].name" ></h5>
                   <h3 class="ml-4"[innerText]="book.statusBook"></h3>
                 </div>
                 <div class="col-md-8">
@@ -39,6 +40,11 @@
                 <label for="status" class="mb-0">status</label>
                 <select [(ngModel)]="book.statusBook" name="status"  class="form-control">
                     <option  *ngFor="let statusBook of statusBook" [ngValue]="statusBook">{{ statusBook }}</option>
+                </select>
+
+                <label for="Genero" class="mb-0">Genero</label>
+                <select [(ngModel)]="book.genrers[0]" name="genrers"  class="form-control">
+                    <option  *ngFor="let genrers of genrers" [ngValue]="genrers">{{ genrers.name }}</option>
                 </select>
             </div>
                 

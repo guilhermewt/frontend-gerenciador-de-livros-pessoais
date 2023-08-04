@@ -24,7 +24,7 @@ export class LoanService {
     const url = `${this.baseurl}loans/${id}`;
     return this.http.post<Loan>(url,loan).pipe(
       map(obj => obj),
-      catchError(e => this.exceptions.defaultBadException(''))
+      catchError(e => this.exceptions.defaultBadException(e))
     );
   }
 
