@@ -1,0 +1,12 @@
+.paginacao{
+    margin-top: 20px;
+    margin-left: 0;
+  
+}
+
+@media screen and (max-width:300px){
+    .paginacao{
+        font-size: 13px;
+    }
+
+}

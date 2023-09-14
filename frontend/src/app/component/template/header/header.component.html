@@ -1,0 +1,43 @@
+<div class="container-fluid mb-2">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <a class="navbar-brand" href="#" style="color:white"> GBoo<span style="color:darkgrey">ks</span>Library</a>
+        <button class="navbar-toggler" style="color:white"type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <fa-icon [icon]="['fas','bars']"></fa-icon>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarHeader">
+          
+          <ul class="navbar-nav m-auto" *ngIf="verifyIfShowMenuElements()">
+            <app-search-book *ngIf="isPaginaEspecificaRoute()" class="configSearch"></app-search-book>
+           
+           
+          </ul>
+
+          <ul class="navbar-nav ml-auto"*ngIf="!verifyIfShowMenuElements()">
+            
+            <li class="nav-item">
+              <a href="https://github.com/guilhermewt/frontend-gerenciador-de-livros-pessoais" class="nav-link text-white">
+                 <i ><img src="assets/img/gitImage.png"style="width:30px;height:25px;" ></i>GitHub Project
+             </a>
+            </li>
+           
+            <li class="nav-item">
+              <a href="https://github.com/guilhermewt" class="nav-link text-white">Desenvolvedor</a>
+            </li>
+          </ul>
+      
+          <div class="dropdown btn-group " style="border-radius: 50%;" *ngIf="verifyIfShowMenuElements()">
+            <button class="btn bg-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+              <fa-icon [icon]="['fas','user']"></fa-icon>
+            </button>
+            <ul class="dropdown-menu " [ngClass]="{'dropdown-menu-right': isLarguraMaiorQue991}"aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" routerLink="/change/password">redefinir senha</a></li>
+              <li><a class="dropdown-item" href="#" routerLink="/login">sair</a></li>
+            </ul>
+          </div>
+        
+        </div>
+      </nav>
+
+</div>

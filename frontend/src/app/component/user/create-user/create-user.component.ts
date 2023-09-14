@@ -1,29 +1,65 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import { EMPTY } from 'rxjs';
 import { user } from 'src/app/component/user/user-models/user.model';
 import { ExceptionsService } from 'src/app/component/exception/exception-services/exceptions.service';
-import { LoginService } from 'src/app/component/login/login-services/login.service';
 import { UserDomainService } from 'src/app/component/user/user-services/user-domain.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.css']
 })
-export class CreateUserComponent {
+export class CreateUserComponent implements OnInit{
 
   user:user = {
-    name:'test',
+    name:'',
     username:'',
     password:'',
-    email:'well@mail'
+    email:''
   }
 
   confirmPassword:string = ''
 
-  constructor(private userdomainService:UserDomainService,private router:Router,private exception:ExceptionsService){}
+  myForm: FormGroup;
 
+  submitted = false;
+  
+
+  constructor(private userdomainService:UserDomainService,private router:Router,private exception:ExceptionsService,private formBuilder: FormBuilder){
+    this.myForm = this.formBuilder.group({
+      name:['',[Validators.required]],
+      login: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      password:['',[Validators.required]]
+      
+      // Adicione outros campos e validações conforme necessário
+    });
+  }
+
+  ngOnInit(): void {
+  }
+
+  submitForm() {
+    if (this.myForm.valid) {
+      this.user.name = this.myForm.value.name;
+      this.user.username = this.myForm.value.login;
+      this.user.email = this.myForm.value.email;
+      this.user.password = this.myForm.value.password;
+
+      this.createUser();
+    } else {
+     this.submitted = true
+     this.exception.showMensage('Preencha todos os campos','','toast-error')
+    }
+  }
+
+  isControlInvalid(controlName: string): boolean {
+    const control = this.myForm.get(controlName);
+    return !!control && control.invalid && control.touched;
+  }
+  
+  
   createUser():void{
       this.userdomainService.createUserService(this.user).subscribe(
         (data) => {   

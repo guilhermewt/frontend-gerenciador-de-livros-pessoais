@@ -1,0 +1,45 @@
+.container-fluid{
+    margin:0;
+    padding: 0;
+}
+
+.bg-dark{
+    background-color: #060101be !important;
+}
+
+.btn{
+    color:white;
+}
+
+.dropdown-menu{
+    background-color: black;
+}
+
+.dropdown-item{
+   color: white;
+}
+
+.dropdown-item:hover{
+   color: white;
+   background-color: rgb(44, 42, 42);
+}
+
+.my_input{
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #737f8b;
+    background-color: black;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+@media screen and (max-width:991px){
+    .configSearch{
+        display: none;
+    }
+}

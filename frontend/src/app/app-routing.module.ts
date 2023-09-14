@@ -11,10 +11,15 @@ import { AuthService } from './component/auth/auth-services/auth.service';
 import { AuthGuardService } from './component/auth/auth-services/auth-guard.service';
 import { ChangePasswordComponent } from './component/user/change-password/change-password.component'
 import { CreateUserComponent } from './component/user/create-user/create-user.component'
+import { BookFilterComponent } from './component/book/book-filter/book-filter.component';
 
 const routes: Routes = [
   {
-    path:'',
+    path:'filterBooks',
+    component:BookFilterComponent
+  },
+  {
+    path:'home',
     canActivate:[AuthGuardService],
     component: BookReadComponent
   },

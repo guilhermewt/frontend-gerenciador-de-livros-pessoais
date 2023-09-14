@@ -5,6 +5,7 @@ import { BookService } from '../book-services/book.service';
 import { ItemsBook } from '../books-model/ObjectApiBook';
 import { Book, Genrers } from '../books-model/Book.model';
 import { GoogleApiService } from '../book-services/GoogleBookApi.service';
+import { ExceptionsService } from '../../exception/exception-services/exceptions.service';
 
 @Component({
   selector: 'app-book-create',
@@ -14,7 +15,7 @@ import { GoogleApiService } from '../book-services/GoogleBookApi.service';
 export class BookCreateComponent implements OnInit{
 
   image:image = {
-    thumbnail: 'http://books.google.com/books/content?id=Pxp9DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'
+    thumbnail: '#'
   }
 
   statusBook:string[] = ['LER','LIDO','LENDO','EMPRESTADO']
@@ -45,8 +46,12 @@ export class BookCreateComponent implements OnInit{
 
   showBook:Boolean = false;
 
+
+  submitted = false;
+
   constructor(private googleBooksService:GoogleApiService ,private bookService:BookService
-    ,private router:Router){
+    ,private router:Router,private exception:ExceptionsService){
+      
   }
 
   ngOnInit(): void {
@@ -57,14 +62,19 @@ export class BookCreateComponent implements OnInit{
   }
 
   save():void{
-   
-    this.bookService.create(this.bookToApi).subscribe(() => {
-      this.router.navigate(['/'])
-    })
+    this.submitted = true;
+    if(this.bookToApi.title == ''){
+      this.exception.showMensage('Preencha o campo titulo','','toast-error')
+    }
+    else{
+        this.bookService.create(this.bookToApi).subscribe(() => {
+          this.router.navigate(['/home'])
+        })
+    }
   }
 
   cancel():void{
-    this.router.navigate(['/'])
+    this.router.navigate(['/home'])
   }
 
   searchBookInApi():void{

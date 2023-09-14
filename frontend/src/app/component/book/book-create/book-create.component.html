@@ -6,21 +6,27 @@
     <div class="row">
       <div class="col-sm-6">
         <form>
-            
+
             <div class="form-group">
-                <label for="titulo">titulo</label>
-                <input type="text" class="form-control" [(ngModel)]="bookToApi.title" name="title">
+                <label for="titulo">titulo:</label>
+                <input type="text"  class="form-control" [(ngModel)]="bookToApi.title" name="title" [ngClass]="{'is-invalid': bookToApi.title == '' && submitted}" placeholder="titulo">
                 <button type="submit" class="btn btn-dark mb-1" (click)="searchBookInApi()" data-toggle="modal" data-target="#janela">Buscar</button>
-            </div>
+              </div>
+            
+            <!-- <div class="form-group">
+                <label for="titulo">titulo</label>
+                <input type="text" class="form-control" formControlName="name" name="title" placeholder="Titulo">
+                <button type="submit" class="btn btn-dark mb-1" (click)="searchBookInApi()" data-toggle="modal" data-target="#janela">Buscar</button>
+            </div> -->
 
             <div class="form-group mb-1">
                 <label for="author">author</label>
-                <input type="text" class="form-control" [(ngModel)]="bookToApi.authors" name="authors">
+                <input type="text" class="form-control" [(ngModel)]="bookToApi.authors" name="authors" placeholder="Autor">
             </div>
 
             <div class="form-group col-4 col-sm-4 pl-0">
               <label for="status" class="mb-0">status</label>
-              <select [(ngModel)]="book.status" name="status"  class="form-control">
+              <select [(ngModel)]="bookToApi.statusBook" name="status"  class="form-control">
                   <option  *ngFor="let statusBook of statusBook" [ngValue]="statusBook">{{ statusBook }}</option>
               </select>
 
@@ -42,7 +48,7 @@
               </p>
             </div>
             
-            <button type="submit" class="btn btn-dark" (click)="save()">salvar</button>
+            <button type="submit" class="btn btn-dark"  (click)="save()">salvar</button>
             <button type="button" class="btn btn-danger" (click)="cancel()">cancelar</button>
            
         </form>
@@ -52,11 +58,20 @@
     <div class="col-sm-6" *ngIf="showBook">
       <div class="card mb-3" style="max-width: 540px;">
         <div class="row no-gutters">
-          <div class="col-md-4 ">
-            <img src="{{bookToApi.imageLink}}" class="ml-4" alt="...">
-            <h5 class="card-title mt-2 ml-4"[innerText]="bookToApi.authors" ></h5>
+         
+          <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 text-center">
+            <img src="{{bookToApi.imageLink}}" *ngIf="bookToApi.imageLink != '#' else imageNotFound" alt="...">
+            
+            <ng-template #imageNotFound >
+              <div class="imageBookNotFound m-auto">
+                  <h6 >{{bookToApi.title}}</h6>
+              </div>
+            </ng-template>
+            
+            <h5 class="card-title"[innerText]="bookToApi.authors" ></h5>
           </div>
-          <div class="col-md-8">
+         
+          <div class="col-sm-6 col-md-6 col-lg-6 col-xl-8">
             <div class="card-body">
               <h5 class="card-title" [innerText]="bookToApi.title"></h5>
               <p class="card-text" style="overflow: auto; height:200px" [innerText]="bookToApi.description"></p>
@@ -90,7 +105,12 @@
                     <div class="book text-center mb-3" *ngFor="let book of bookSearch" data-dismiss="modal" (click)="selectBook(book.id)">
 
                             <div class="card">
-                                <img src="{{book.volumeInfo.imageLinks.thumbnail}}"  class="m-auto" alt="...">
+                                <img src="{{book.volumeInfo.imageLinks.thumbnail}}"  *ngIf="book.volumeInfo.imageLinks.thumbnail != '#' else imageNotFound"class="m-auto" alt="...">
+                                <ng-template #imageNotFound >
+                                  <div class="imageBookNotFound m-auto">
+                                      <h6 >{{book.volumeInfo.title}}</h6>
+                                  </div>
+                                </ng-template>
                                 <div class="card-body">
                                 <p class="card-title mb-1 mt-1">{{ book.volumeInfo.title }}</p>
                                 <p class="card-text mb-1 reduceText">{{book.volumeInfo.description}}</p>

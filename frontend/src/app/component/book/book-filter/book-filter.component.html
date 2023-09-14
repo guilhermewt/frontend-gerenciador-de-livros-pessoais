@@ -1,0 +1,56 @@
+<!-- <p style="color:red;" class="text-center" > Esta é uma versão beta, todo o  banco de dados será restaurado em 24 horas</p> -->
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <button class="m-auto navbar-toggler" style="color:white"type="button" data-toggle="collapse" data-target="#book-filter" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <fa-icon [icon]="['fas','filter']" class="mr-1"></fa-icon> Filtrar Resultados
+        </button>
+      
+        <div class="collapse navbar-collapse" id="book-filter">
+          
+          <ul class="navbar-nav m-auto">
+            <li class="dropdown m-1">
+                <div class="config-filter showButtonConfig">
+                    <label for="genero">&#8203;</label>
+                    <button type="button"class="btn buttonSave mr-2 mb-1" (click)="salvar()">
+                        <span>
+                            <i><fa-icon [icon]="['fas','add']" class="mr-1"></fa-icon></i>
+                            Adicionar
+                        </span>
+                    </button>
+                </div>
+                
+            </li>
+           
+            <li class="dropdown m-1">
+                <div class="config-filter">
+                    <label for="genero">Gênero:</label>
+                    <select [(ngModel)]="genrerToSearch" name="genrerToSearch" (click)="filterByGenrer()" class="my_input">
+                        <option  *ngFor="let genrers of genrersFromApi" [ngValue]="genrers" class="dropdown-item" >{{ genrers.name }}</option>
+                    </select>
+                </div>
+            </li>
+
+            <li class="dropdown m-1">
+                    <div class="config-filter">
+                        <label for="genero">Autor</label>
+                        <div>
+                            <input [(ngModel)]="authorSearch" name="authorSearch" class="my_input" id="configAuthor" type="text" placeholder="autor" aria-label="Search">
+                            <button (click)="filterByAuthor()" class="btn btn-outline-info ml-1" type="submit">Search</button>
+                        </div>
+                    </div>
+            </li>
+
+            <li class="dropdown m-1">
+                <div class="config-filter">
+                    <label for="genero">Status:</label>
+                    <select [(ngModel)]="statusToFilter" name="statusToFilter" class="my_input" (click)="filter()">
+                        <option  *ngFor="let statusBook of statusBook" [ngValue]="statusBook" class="dropdown-item" >{{ statusBook }}</option>
+                    </select>
+                </div>
+            </li>
+            
+          </ul>
+
+        </div>
+      </nav>
+</div>

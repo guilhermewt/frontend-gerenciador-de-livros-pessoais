@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit,ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from 'src/app/component/login/login-services/login.service';
 import { BookService } from '../book-services/book.service';
-import { AuthService } from 'src/app/component/auth/auth-services/auth.service';
-import { Book, Genrers } from '../books-model/Book.model';
+import { Book} from '../books-model/Book.model';
+import { CommunicationComponentsService } from '../book-services/communication-components.service';
+import { lastSearch } from '../books-model/lastSearch.model';
+import { ViewportScroller } from '@angular/common';
+import { identity } from 'rxjs';
+
 
 @Component({
   selector: 'app-book-read',
@@ -12,40 +15,60 @@ import { Book, Genrers } from '../books-model/Book.model';
 })
 export class BookReadComponent implements OnInit{
 
-
-  constructor(private livroService:BookService,private router:Router,private loginService:LoginService,private authService:AuthService) { }
-
-  image = 'http://books.google.com/books/content?id=6z7G5VGXnScC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'
+  image = '#'
   page:number = 1;
   bookFromDataBase!:Book[];
-  bookToShow!:Book[];
-  itemsPerPage:number=12;
+  bookToShow:Book[] = [];
+  itemsPerPage:number=27;
+  totalItems!:number;
   totalProduct:any;
-  bookToSearch!:string
+  lastSearch!:lastSearch
 
-  statusBook:string[] = ['TODOS','LIDO','LER','LENDO','EMPRESTADO']
-  statusToFilter:string = this.statusBook[0]
-  filteredBooks!:Book[]
+  showScrollButton = false;
 
-  authorSearch:string = ''
+  isLoanding:boolean = true;
+  isEmpty:boolean = false;
 
-  genrersFromApi!:Genrers[]
+  constructor(private comunicationService:CommunicationComponentsService,private livroService:BookService,
+    private router:Router,private viewportScroller: ViewportScroller) { 
+      this.comunicationService.getBook().subscribe(books =>{
+        this.bookToShow = books.content;
+        this.totalItems = books.totalElements;
+        if(this.lastSearch != undefined){
+          if(books.totalElements > 0){
+            this.isLoanding = false
+          }
+          else{
+            this.isEmpty = true;
+          }
+        }
+      })
 
-  genrerToSearch!:Genrers
-  
-  ngOnInit(): void {
-     this.livroService.read().subscribe((book) => {
-      this.bookFromDataBase = book;
-      this.bookToShow = this.bookFromDataBase
-      console.log(book)
-    })
+      this.comunicationService.getPage().subscribe(data => {
+        this.page = data
+      })
 
-    this.livroService.findAllGenrers().subscribe((data) =>{
-      this.genrersFromApi = data
-      this.genrerToSearch = this.genrersFromApi[0]
-    })
+      this.comunicationService.getLastSearch().subscribe(data => {
+        this.lastSearch = data
+      })
   }
 
+  
+  ngOnInit(): void {
+    this.livroService.readBookPageable(this.itemsPerPage,this.page - 1).subscribe((book) => {
+      this.bookToShow = book.content
+      this.totalItems = book.totalElements
+      this.lastSearch = new lastSearch(false,false,false,false,true)
+      if(book.totalElements > 0){
+        this.isLoanding = false
+      }
+      else{
+        this.isEmpty = true;
+      }
+    
+    })
+  }
+  
   mostrar(page:string):void{
     console.log(page)
   }
@@ -57,74 +80,19 @@ export class BookReadComponent implements OnInit{
   editBook():void{
     this.router.navigate(['/updatebook'])
   }
-  
 
-  filter():void{
-    /*this.bookToShow = this.bookFromDataBase
-    this.filteredBooks = this.bookToShow.filter(el => el.statusBook === this.statusToFilter);
-    
-    if(this.statusToFilter != 'todos'){
-      this.bookToShow = this.filteredBooks
-    }
- 
-    */
-    if(this.statusToFilter == this.statusBook[0]){
-      this.livroService.read().subscribe(data => {
-        this.bookToShow = data
-      })
-     
-    }
-    else{
-      this.livroService.findBookByStatus(this.statusToFilter).subscribe((books) => {
-        this.bookToShow = books
-      })
-    }
-
-  }
-
-  filterByAuthor():void{
-      this.livroService.findBookByAuthor(this.authorSearch).subscribe((books) => {
-        this.bookToShow = books
-      })
-  }
-
-  filterByGenrer():void{
-    this.livroService.findBookByGenrer(this.genrerToSearch.name).subscribe((books) => {
-      this.bookToShow = books
-    })
-}
-
-  search(e:Event):void{
-    const target = e.target as HTMLInputElement
-    const value = target.value
-
-    console.log(value)
-    // this.bookToShow = this.bookFromDataBase.filter((books) => {
-    //   return books.title.toLocaleLowerCase().includes(value)
-    // })
-
-    this.livroService.searchBook(value).subscribe(books => {
-      this.bookToShow = books
-    })
-  }
-
-  logout():void{
-    this.authService.clear();
-    this.router.navigate(['/login'])
+  changeIdBookShow(id:number){
+    this.comunicationService.sendnumberToSearchBook(id)
   }
   
-  // searchBook():void{
-  //   this.livroService.searchBook(this.bookToSearch).subscribe((books) => {
-  //     this.bookToShow = books;
-  //   })
-  // }
 
-  testApi():void{
-    this.loginService.obterPerfil().subscribe(data => {
-      console.log(data)
-    })
+  @HostListener('window:scroll')
+  onWindowScroll() {
+    this.showScrollButton = window.scrollY >= 200; // Exibir o botão quando o scroll for maior que 200px
   }
 
-
-
+  scrollToTop() {
+    this.viewportScroller.scrollToPosition([0, 0]);
+  }
+  
 }

@@ -17,6 +17,8 @@ export class BookUpdateComponent implements OnInit{
   statusBook:string[] = ['LIDO','LER','LENDO','EMPRESTADO'];
   genrers!:Genrers[]
 
+  submitted = false;
+
   ngOnInit(): void {
     const id = this.activeRouter.snapshot.paramMap.get('id');
     this.bookService.readById(id!).subscribe(book => {
@@ -28,14 +30,19 @@ export class BookUpdateComponent implements OnInit{
   }
 
   update():void{
-    console.log(this.book)
-    this.bookService.update(this.book).subscribe(() => {
-      this.exceptions.showMensage('produto atualizado','operação bem sucedida!','toast-sucess')
-      this.router.navigate([''])
-    })
+    this.submitted = true;
+    if(this.book.title == ''){
+      this.exceptions.showMensage('Preencha o campo titulo','','toast-error')
+    }
+    else{
+      this.bookService.update(this.book).subscribe(() => {
+        this.exceptions.showMensage('produto atualizado','operação bem sucedida!','toast-sucess')
+        this.router.navigate(['/home'])
+      })
+    }
   }
 
   cancel():void{
-    this.router.navigate([''])
+    this.router.navigate(['/home'])
   }
 }

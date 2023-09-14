@@ -1,7 +1,19 @@
 /*===============geral=================*/
+.truncate-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*max-width: 400px;  A largura máxima que você deseja permitir */
+  }
 
-.container{
+  .card-body{
+    min-height: 310px!important;
+    padding: 0px!important;
+  }
+
+.container-fluid{
     height: auto;
+    padding: 0;
 }
 
 .estrutura{
@@ -14,11 +26,25 @@
 
 
 .livro{
-    width: 240px;
-    min-height: 340px;
-    margin: 20px 20px 60px 20px;
+    width: 138px;
+    min-height: 310px;
+    margin: 5px 0px 0px 10px;
     box-sizing: border-box;
     color:white;
+}
+
+.buttonSave{
+	background-color:#0B0E11;
+}
+
+.emptyBookConfig{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-flow: wrap;
+    background-color: rgba(2, 2, 2, 0.664);
+    height:200px;
+    align-items: center;
 }
 
  .filterBooks > button{
@@ -67,19 +93,33 @@
    background-color: rgb(44, 42, 42);
 }
 
+.config-filter{
+    display: flex;
+    flex-direction: column;
+}
+
+.showButtonConfig > button{
+    width:300px
+}
+
+.card{
+    background-color: #0202029f!important;
+    padding: 0px!important;
+}
+
 
 
 /*===========livro card==============*/
 
 .img-livro > img{
-    max-width:230px;
+     width:138px!important;
      height:190px;
-     margin: 0;
-     border:1px solid black;
+     height:190px;
 }
 
+
 .titulo{
-    max-width: 230px;
+    max-width: 300px;
     height: 50px;
     display: flex;
     align-items: center;
@@ -111,7 +151,12 @@
 }
 
 .button_blue{
-    background-color: rgba(10, 10, 79, 0.859);
+    background-color: #7B6D44;
+}
+
+.style-modal{
+    background-color: #0c0c0ce8;
+    color: #fff;
 }
 
 /*=========paginacao=========*/
@@ -128,35 +173,52 @@
 
 
 
- @media screen and (max-width:767px){
-    /* .img-livro > img{
-        width:180px;
-        height:140px;
-    }    
+ /* @media screen and (max-width:350px){
+  
+    .showButtonConfig > button{
+        width:150px
+    }
+    
+}  */
 
-    .livro{
-        width: 180px;
-        height:215px;
-        font-size: 5px;
+.showButtonConfig > button{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+
+
+@media screen and (min-width:991px){
+    .showButtonConfig{
+        display: none;
     }
 
-    .titulo{
-        width: 180px;
+    .showSearch{
+        display:none;
+    }
+}
+
+@media screen and (min-width:770px){
+  
+    .showButtonConfig > button{
+        width: 500px;
     }
 
-    .buttons > button{
-        width: 55px;
-        height: 20px;
-        font-size: 9px;
+} 
+
+@media screen and (max-width:350px){
+  
+    .showButtonConfig > button{
+        width: 200px;
     }
 
-    .paginacao{
-        font-size: 13px;
-    } */
-    
+} 
 
-    
-    
+@media screen and (max-width:260px){
+  
+    .showButtonConfig > button{
+        width: 150px;
+    }
 
 } 
 
@@ -165,35 +227,4 @@
         font-size: 10px;
     }
 
-    .estrutura{
-        display: block;
-    }
-    .img-livro > img{
-        max-width:180px;
-        height:140px;
-    } 
-
-    .buttons > button{
-        display: block;
-        width: 100%;
-        margin: 0;
-    }
-
-    .livro{
-        width: 100%;
-        display: block;
-        margin-top: 0px;
-        margin-left: 0px;
-        margin-right: 0px;
-    }
-
-    .my_input{
-        max-width: 150px;
-    }
 }
-
-/* @media screen and (max-width:600px){
-    .box{
-        width: 40%;
-    }
-} */

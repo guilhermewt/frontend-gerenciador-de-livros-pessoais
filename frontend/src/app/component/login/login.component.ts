@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/component/auth/auth-services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { error } from 'jquery';
 import { RequestLogin } from 'src/app/component/login/login-models/requestLogin.model';
@@ -14,9 +15,10 @@ export class LoginComponent implements OnInit{
 
   public requestLogin!: RequestLogin;
 
-  constructor(private loginService:LoginService,private router:Router){}
+  constructor(private loginService:LoginService,private router:Router,private authService:AuthService){}
 
   ngOnInit(): void {
+    this.authService.clear()
     this.requestLogin = new RequestLogin();
   }
 
@@ -24,10 +26,11 @@ export class LoginComponent implements OnInit{
     this.loginService.doLogin(this.requestLogin);
   }
 
-  testApi():void{
-    this.loginService.obterPerfil().subscribe(data => {
-      console.log(data)
-    })
+ 
+  loginFree(){
+    this.requestLogin.username = 'El Tripaseca'
+    this.requestLogin.password = 'chapolin123'
+    this.doLogin()
   }
 
 }

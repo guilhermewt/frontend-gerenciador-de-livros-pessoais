@@ -12,8 +12,8 @@ export class AuthService {
  showMenuEmitter: EventEmitter<Boolean>= new EventEmitter<Boolean>();
 
   public clear():void{
-    this.showMenuEmitter.emit(false)
     sessionStorage.removeItem('token');
+    this.showMenuEmitter.emit(false)
   }
 
   public isAuthenticated():boolean{

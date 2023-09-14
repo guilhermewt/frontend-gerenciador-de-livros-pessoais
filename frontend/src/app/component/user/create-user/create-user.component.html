@@ -3,35 +3,50 @@
         <div class="col-xl-6 text_login">
 
                 <div>
-                        <div class="pb-2 mt-4 mb-4 border-bottom">
+                        <div class="pb-2 mt-4 mb-4 border-bottom shadow-lg p-3 mb-5 rounded">
                             <h2>cadastrar usuário</h2>
                         </div>
-                        <span *ngIf="confirmPasswordMethod() ; else differentPassword"></span>
-                       
-                        <form>    
-                            <div class="form-group">
-                                <label for="login">login</label>
-                                <input type="text" class="form-control" [(ngModel)]="user.username" name="username">
-                            </div>
 
-                            <div class="form-group">
-                                <label for="titulo">senha</label>
-                                <input type="password" class="form-control" [(ngModel)]="user.password" name="password">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="titulo">confirmar senha</label>
-                                <input type="password" class="form-control" [(ngModel)]="confirmPassword" name="confirmPassword">
-                            </div>
+                        <!-- <form [formGroup]="myForm" (ngSubmit)="submitForm()">
+                            <label>Username: <input type="text" formControlName="username" [ngClass]="{'ng-invalid': isControlInvalid('username')}"></label>
+                            <label>Email: <input type="email" formControlName="email" [ngClass]="{'ng-invalid': isControlInvalid('email')}"></label>
                             
-                            <button type="submit" class="btn btn btn-dark mr-3" (click)="createUser()">Criar</button>
+                            <button type="submit" [disabled]="myForm.invalid">Enviar</button>
+                          </form> -->
+                          
+                          
+                          <label *ngIf="submitted && myForm.valid == false" class="text-danger">* Preencha todos os campos</label>
+                        <form [formGroup]="myForm" (ngSubmit)="submitForm()" style="border:none">    
+                            
+                            <div class="form-group">
+                                <label for="login">Seu nome:</label>
+                                <input type="text"  class="form-control" formControlName="name" [ngClass]="{'is-invalid': myForm.get('name')?.hasError('required') && submitted}" placeholder="nome">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="login">Login:</label>
+                                <input type="text" class="form-control" formControlName="login" [ngClass]="{'is-invalid': myForm.get('login')?.hasError('required') && submitted}" placeholder="login">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="login">Email:</label>
+                                <input type="email" class="form-control" formControlName="email" [ngClass]="{'is-invalid': myForm.get('email')?.hasError('required') && submitted}" placeholder="example@mail">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="titulo">Senha</label>
+                                <input type="password" class="form-control" formControlName="password" [ngClass]="{'is-invalid': myForm.get('password')?.hasError('required') && submitted}" placeholder="senha">
+                            </div>
+
+                           
+                            <button type="submit" class="btn btn btn-dark mr-3" (click)="submitted = true" >Criar</button>
                             <button type="button" class="btn btn btn-dark" (click)="cancel()" >Cancelar</button>
                         </form>
+
+                        
                 </div>
 
-                <ng-template #differentPassword >
-                    <p class="text-danger">senhas diferentes</p>
-                </ng-template>
+                
         </div>
     </div>
 </div>

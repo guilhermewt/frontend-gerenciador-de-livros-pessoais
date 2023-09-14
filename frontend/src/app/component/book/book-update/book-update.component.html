@@ -5,20 +5,31 @@
     
     <div class="row">
         <div class="col-sm-6" >
-            <div class="card mb-3 pt-2" style="max-width: 540px;">
-              <div class="row no-gutters">
-                <div class="col-md-4 ">
-                  <img src="{{book.imageLink}}" class="ml-4" alt="...">
-                  <h5 class="card-title mt-2 ml-4"[innerText]="book.authors" ></h5>
-                  <h5 class="card-title mt-2 ml-4"[innerText]="book.genrers[0].name" ></h5>
-                  <h3 class="ml-4"[innerText]="book.statusBook"></h3>
+            <div class="card pt-2" style="max-width: 540px;">
+              <div class="row">
+               
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 text-center">
+                  
+                  <img src="{{book.imageLink}}" *ngIf="book.imageLink != '#' else imageNotFound" alt="...">
+               
+                  <ng-template #imageNotFound >
+                    <div class="imageBookNotFound m-auto">
+                        <h6 >{{book.title}}</h6>
+                    </div>
+                  </ng-template>
+                
                 </div>
-                <div class="col-md-8">
+                
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xl-8">
                   <div class="card-body">
                     <h5 class="card-title" [innerText]="book.title"></h5>
-                    <p class="card-text" style="overflow: auto; height:200px" [innerText]="book.description"></p>
+                    <p class="card-text showDescriptionConfig" style="overflow:auto;" [innerText]="book.description"></p>
+                    <h5 class="card-title"[innerText]="book.authors" ></h5>
+                    <h5 class="card-title"[innerText]="book.genrers[0].name" ></h5>
+                    <h6 class=""[innerText]="book.statusBook"></h6>
                   </div>
                 </div>
+               
               </div>
             </div>
           </div>
@@ -28,7 +39,7 @@
                 
                 <div class="form-group">
                     <label for="titulo">titulo</label>
-                    <input type="text" class="form-control" [(ngModel)]="book.title" name="title">
+                    <input type="text" class="form-control" [(ngModel)]="book.title" name="title" [ngClass]="{'is-invalid': book.title == '' && submitted}">
                 </div>
 
                 <div class="form-group mb-1">

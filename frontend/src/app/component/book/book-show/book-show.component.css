@@ -37,10 +37,24 @@ select.form-control{
     color:white  
 }
 
-@media screen and (max-width:992px){
-  
-    /* .showDescriptionConfig {
-        display:none
-    } */
+.button-config{
+    max-width: 200px;
+}
 
-} 
+.button_black{
+    background-color: black;
+    display: block!important;
+}
+
+.button_red{
+    background-color: rgba(85, 24, 24, 0.9);
+}
+
+.button_blue{
+    background-color: #7B6D44;
+}
+
+.buttons { 
+    display: flex;
+    justify-content: center;
+}

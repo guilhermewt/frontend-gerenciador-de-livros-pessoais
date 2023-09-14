@@ -22,12 +22,12 @@ export class BookRemoveComponent implements OnInit{
 
   deleteBook():void{
     this.bookService.delete(this.book.id!).subscribe(() => {
-      this.router.navigate([''])
+      this.router.navigate(['/home'])
     })
   }
 
   cancel(): void{
-    this.router.navigate([''])
+    this.router.navigate(['/home'])
   }
 
 }

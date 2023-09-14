@@ -10,9 +10,9 @@ export class ExceptionsService {
 
   constructor(private router:Router,private toastr: ToastrService) { }
 
-  throwException(e:HttpErrorResponse):Observable<any>{
+  throwException(e:HttpErrorResponse,object:string):Observable<any>{
     if(e.status == 409){
-      this.defaultBadException('usuario ja existente!')
+      this.defaultBadException(`Este ${object} já existe!`)
     }
     else if(e.status == 403){
       this.tokenFailed()
@@ -31,7 +31,7 @@ export class ExceptionsService {
   }
 
   userNotFound(e:HttpErrorResponse):Observable<any>{
-    this.showMensage('login ou senha invalido','login error','toast-error')
+    this.showMensage('login ou senha inválidos','login error','toast-error')
     return EMPTY
   }
 

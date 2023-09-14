@@ -22,7 +22,7 @@ export class LoginService {
   }
  
   public doLogin(requestLogin:RequestLogin):void{
-    console.log(requestLogin)
+    
     this.httpClient.post<responseLogin>(`${this.baseUrl}login`,requestLogin)
     .pipe(
       tap((loginResponse) => this.authService.loginResponse = loginResponse),
@@ -30,15 +30,8 @@ export class LoginService {
       catchError(e => this.exceptions.userNotFound(e)))
     .subscribe(data => {
         sessionStorage.setItem('token',data.token)
-        this.router.navigate([''])
+        this.router.navigate(['/home'])
       })
-  }
-
-  obterPerfil():Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}orders`).pipe(
-      map(obj => obj),
-        catchError(e => this.exceptions.throwException(e)) 
-    );
   }
 
 }

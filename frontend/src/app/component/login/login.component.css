@@ -11,6 +11,11 @@
     align-items: center;
 }
 
+.config-slide{
+	display: flex;
+    align-items: center;
+}
+
 
 .form-control{
 	background-color: rgba(9, 9, 9, 0.587);
@@ -22,3 +27,11 @@
 	background-color: rgba(208, 40, 40, 0.035);
 	color: white;
 }
+
+@media screen and (max-width:992px){
+  
+    .config-slide{
+		display:none;
+	}
+
+} 

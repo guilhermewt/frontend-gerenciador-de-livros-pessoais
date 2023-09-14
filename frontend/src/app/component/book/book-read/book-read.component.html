@@ -1,107 +1,86 @@
- <div class="container">
+ <div class="container-fluid">
+      <div class="config-filter">
+        <app-search-book class="m-auto showSearch"></app-search-book>
 
-        <!-- <div class="filterBooks">
-            <button type="button"class="btn btn-info ml-4" (click)="salvar()">salvar</button>
-            
-            <select [(ngModel)]="statusToFilter" name="statusToFilter" class="form-control" (click)="filter()">
-                 <option  *ngFor="let statusBook of statusBook" [ngValue]="statusBook" >{{ statusBook }}</option>
-            </select>
-              
-            <button type="button"class="btn btn-danger ml-1 " (click)="filter()">filter</button>
-
-             <input class="form-control mr-auto " type="search" placeholder="Search" aria-label="Search" (input)="search($event)">
-             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="bookToSearch" name="searchBook">
-             
-             <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="searchBook()">Search</button> 
-    
-        </div> -->
-
-           
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-        <a class="navbar-brand" href="#" style="color:white">booksGui</a>
-        <button class="navbar-toggler" style="color:white"type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <fa-icon [icon]="['fas','bars']"></fa-icon>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <button type="button"class="btn btn-info mr-2 mb-1" (click)="salvar()">salvar</button>
-            </li>
-           
-            <div class="dropdown">
-                <select [(ngModel)]="statusToFilter" name="statusToFilter" class="my_input" (click)="filter()">
-                    <option *ngFor="let statusBook of statusBook" [ngValue]="statusBook" class="dropdown-item" >{{ statusBook }}</option>
-               </select>
-              </div>
-
-              <form class="form-inline my-2 my-lg-0">
-                <input class="my_input mr-sm-2" type="text" placeholder="autor" aria-label="Search" [(ngModel)]="authorSearch" name="authorSearch">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="filterByAuthor()">Search</button>
-              </form>
-
-              <div class="dropdown">
-                <select [(ngModel)]="genrerToSearch" name="genrerToSearch" class="my_input" (click)="filterByGenrer()">
-                    <option *ngFor="let genrers of genrersFromApi" [ngValue]="genrers" class="dropdown-item" >{{ genrers.name }}</option>
-               </select>
-              </div>
-            
-          </ul>
-          
-          <form class="form-inline my-2 my-lg-0">
-            <input class="my_input mr-sm-2" type="search" placeholder="Search" aria-label="Search" (input)="search($event)">
-          </form>
-         
-          <div class="dropdown btn-group" style="border-radius: 50%;">
-            <button class="btn bg-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
-              <fa-icon [icon]="['fas','user']"></fa-icon>
+        <div class="showButtonConfig m-auto">
+            <button type="button"class="btn buttonSave mb-1 btn-block" routerLink="/create">
+                <span>
+                    <i><fa-icon [icon]="['fas','add']" class="mr-1"></fa-icon></i>
+                    Adicionar
+                </span>
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" routerLink="/change/password">redefinir senha</a></li>
-              <li><a class="dropdown-item" href="#" (click)="logout()">sair</a></li>
-            </ul>
-          </div>
+        </div>
         
-        </div>
-      </nav>
+        <app-book-filter></app-book-filter>
+      </div>
     
-    <div class="estrutura">
+     
+    <div *ngIf="bookToShow && bookToShow.length > 0; else bookNotFound" class="estrutura mt-2">
        
-        <div class="livro text-center" *ngFor="let Livro of bookToShow | paginate: { itemsPerPage: itemsPerPage, currentPage: page }" >
-            <div class="img-livro">
-                <img src="{{Livro.imageLink}}" class="rounded"alt="">
-            </div>
+        <div class="livro text-center" 
+             *ngFor="let Livro of bookToShow | paginate: { itemsPerPage: itemsPerPage, 
+             currentPage: page,totalItems: totalItems}"
+             data-toggle="modal" data-target="#showBook" >
             
-            <div class="titulo">            
-                <h3>{{ Livro.title }}</h3> 
-            </div>     
-            
-            <div class="buttons">
-                <button class="btn button_black " routerLink="/updatebook/{{ Livro.id }}"><fa-icon [icon]="['fas','pen']"></fa-icon></button>
-                <button class="btn button_red" routerLink="/deletebook/{{ Livro.id }}"><fa-icon [icon]="['fas', 'trash']"></fa-icon></button>
-                <button class="btn button_blue mb-2" routerLink="/loan/{{Livro.id}}">emprestimo</button>
+            <div class="card col-12" (click)="Livro.id !== undefined && changeIdBookShow(Livro.id)">
+              <div class="card-body img-livro">
+                <img src="{{Livro.imageLink}}" *ngIf="Livro.imageLink != '#' else imageNotFound" class="card-img-top" alt="...">
+               
+                <ng-template #imageNotFound >
+                  <div class="imageBookNotFound">
+                      <h6 >{{Livro.title}}</h6>
+                  </div>
+                </ng-template>
+
+                <h6 class="card-title ">{{ Livro.title | slice:0:32 }}{{ Livro.title.length > 32 ? '...' : '' }}</h6>
+                <!-- <h6 class="card-subtitle text-muted mb-1">{{ Livro.genrers[0].name }}</h6> -->
+                <h6 class="card-subtitle text-muted mb-1">{{ Livro.authors | slice:0:17 }}{{ Livro.title.length > 17 ? '...' : '' }}</h6>
+                <h6 class="card-subtitle">{{ Livro.statusBook }}</h6>
+              </div>
             </div>
-            <label for="" style="font-size:20px;">status: {{ Livro.statusBook }}</label>
             
         </div>
-
+        <button *ngIf="showScrollButton" (click)="scrollToTop()" class="scroll-to-top">
+          <fa-icon [icon]="['fas','arrow-circle-up']" class="mr-1"></fa-icon>
+        </button>
     </div>
-    <div style="margin-left: 50px">
+
+    <ng-template #bookNotFound >
+      <div class="emptyBookConfig mt-3" *ngIf="isEmpty == false">
+        <div class="spinner-border text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+
+      <div class="emptyBookConfig mt-3" *ngIf="isEmpty">
+          <h3 >Nenhum Livro Encontrado</h3>
+       </div>
+
+    </ng-template>
+
+    <app-book-pagination *ngIf="bookToShow && bookToShow.length > 0"></app-book-pagination>
+
    
-        <button type="button" (click)="testApi()">testApi</button>
-    </div>
-    
-    <div class="text-center paginacao">
-        <pagination-controls (pageChange)="page = $event"></pagination-controls>
-    </div>
 
-
-
-
-
-
- 
  </div>
 
- 
+ <form class="modal fade" id="showBook" ngbModal>
+    <div class="modal-dialog">
+      <div class="modal-content style-modal">
+        
+        <!-- cabecalho -->
+        <div class="modal-header"> 
+          <button type="button" class="close" style="color:white" data-dismiss="modal" (click)="changeIdBookShow(-1)">
+            <span>&times;</span>
+          </button>
+        </div>
+
+        <!-- corpo -->
+        <div class="modal-body"> 
+         <app-book-show></app-book-show>
+        </div>
+
+      </div>
+    </div>
+
+ </form>

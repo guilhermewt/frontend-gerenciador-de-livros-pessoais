@@ -5,24 +5,25 @@
      <div class="row">
         <div class="col-sm-6">
 
-               <form>
+               <form [formGroup]="loanForm" (ngSubmit)="submitForm()">
                
                    <div class="form-group">
                      <label for="startOfTheLoan">data do emprestimo</label>
-                     <input type="date" class="form-control" [(ngModel)]="loan.startOfTheLoan" name="startOfTheLoan">
+                     <input type="date" class="form-control" formControlName="startOfTheLoan" [ngClass]="{'is-invalid': loanForm.get('startOfTheLoan')?.hasError('required') && submitted}">
                    </div>
        
                    <div class="form-group">
                      <label for="titulo">data da devolução</label>
-                     <input type="date" class="form-control" [(ngModel)]="loan.endOfLoan" name="endOfLoan">
+                     <input type="date" class="form-control" formControlName="endOfLoan" [ngClass]="{'is-invalid': loanForm.get('startOfTheLoan')?.hasError('required') && submitted}">
                    </div>
  
                    <div class="form-group">
                      <label for="titulo">emprestar para</label>
-                     <input type="text" class="form-control" [(ngModel)]="loan.addressee" name="addressee">
+                     <input type="text" class="form-control" formControlName="addressee" [ngClass]="{'is-invalid': loanForm.get('startOfTheLoan')?.hasError('required') && submitted}">
                    </div>
        
-                   <button type="submit" class="btn button_blue" (click)="saveLoan()" data-dismiss="modal">salvar</button>
+                   <button type="submit" class="btn button_blue" (click)="submitted = true">salvar</button>
+                   <button  style="display:none" data-dismiss="modal" #button >salvar</button>
                   
                </form>
  

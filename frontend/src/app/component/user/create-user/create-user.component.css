@@ -10,3 +10,8 @@
 	color: white;
 	border: 1px solid rgb(33, 44, 33);
 }
+
+.red{
+	border: 1px solid red;
+	background-color: black;
+}

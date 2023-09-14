@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExceptionsService } from 'src/app/component/exception/exception-services/exceptions.service';
 import { Book } from '../../book/books-model/Book.model';
@@ -6,6 +6,7 @@ import { BookService } from '../../book/book-services/book.service';
 import { Loan } from '../loan.model';
 import { LoanService } from '../loan-service/loan-service.service';
 import { LoanComponent } from '../loan-read/loan-read.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-loan-create',
@@ -14,10 +15,7 @@ import { LoanComponent } from '../loan-read/loan-read.component';
 })
 export class LoanCreateComponent implements OnInit{
  
-  constructor(private loanRead:LoanComponent,private bookService:BookService,private router:Router,private activedRouter:ActivatedRoute,
-    private loanService:LoanService, private exceptions:ExceptionsService){}
-
-  book!:Book
+   book!:Book
 
   loan:Loan = {
     startOfTheLoan:'',
@@ -26,12 +24,44 @@ export class LoanCreateComponent implements OnInit{
     bookId: ''
   }
 
+  loanForm: FormGroup;
+  submitted = false;
+
+  @ViewChild('button') button!: ElementRef;
+
+  constructor(private loanRead:LoanComponent,private bookService:BookService,private router:Router,private activedRouter:ActivatedRoute,
+    private loanService:LoanService, private exceptions:ExceptionsService,private formBuilder: FormBuilder){
+      this.loanForm = this.formBuilder.group({
+        startOfTheLoan:['',[Validators.required]],
+        endOfLoan: ['', [Validators.required]],
+        addressee: ['', [Validators.required]]
+        
+      });
+    }
+
+
   ngOnInit(): void {
     const id = this.activedRouter.snapshot.paramMap.get('id');
     this.bookService.readById(id!).subscribe(book => {
       this.book = book
     })
   }
+
+  submitForm() {
+    if (this.loanForm.valid) {
+      this.loan.startOfTheLoan = this.loanForm.value.startOfTheLoan;
+      this.loan.endOfLoan = this.loanForm.value.endOfLoan;
+      this.loan.addressee = this.loanForm.value.addressee;
+
+      this.saveLoan();
+      this.button.nativeElement.click();
+
+    } else {
+     this.submitted = true
+     this.exceptions.showMensage('Preencha todos os campos','','toast-error')
+    }
+  }
+
 
   saveLoan():void{
     const id = this.activedRouter.snapshot.paramMap.get('id');
@@ -44,6 +74,6 @@ export class LoanCreateComponent implements OnInit{
   }
   
   cancel():void{
-    this.router.navigate(['/'])
+    this.router.navigate(['/home'])
   }
 }
