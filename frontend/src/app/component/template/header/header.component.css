@@ -38,6 +38,11 @@
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
+.style-modal{
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+}
+
 @media screen and (max-width:991px){
     .configSearch{
         display: none;

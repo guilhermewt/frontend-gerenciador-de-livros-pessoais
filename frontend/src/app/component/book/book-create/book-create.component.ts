@@ -1,3 +1,5 @@
+import { CommunicationComponentsService } from './../book-services/communication-components.service';
+import { DashboardBookComponent } from './../../dashboards/dashboard-book/dashboard-book.component';
 import { BookApi,image } from '../books-model/ObjectApiBook';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -18,7 +20,7 @@ export class BookCreateComponent implements OnInit{
     thumbnail: '#'
   }
 
-  statusBook:string[] = ['LER','LIDO','LENDO','EMPRESTADO']
+  statusBook:string[] = ['LER','LIDO','LENDO']
 
   book:BookApi = {
     status: this.statusBook[0],
@@ -50,7 +52,7 @@ export class BookCreateComponent implements OnInit{
   submitted = false;
 
   constructor(private googleBooksService:GoogleApiService ,private bookService:BookService
-    ,private router:Router,private exception:ExceptionsService){
+    ,private router:Router,private exception:ExceptionsService,private communicationService:CommunicationComponentsService){
       
   }
 
@@ -68,6 +70,7 @@ export class BookCreateComponent implements OnInit{
     }
     else{
         this.bookService.create(this.bookToApi).subscribe(() => {
+          this.communicationService.triggerNgOnInit();
           this.router.navigate(['/home'])
         })
     }
@@ -111,7 +114,13 @@ export class BookCreateComponent implements OnInit{
       this.bookToApi.description =  this.bookSearch[indice].volumeInfo.description
     }
 
-    this.numWords = this.bookToApi.description.length
+    if(this.bookToApi.description == undefined){
+      this.numWords = 0
+    }
+    else{
+      this.numWords = this.bookToApi.description.length
+    }
+    
   }
 
   countWords():void{

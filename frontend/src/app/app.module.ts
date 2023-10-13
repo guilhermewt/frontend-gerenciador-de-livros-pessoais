@@ -26,6 +26,7 @@ import { HeaderComponent } from './component/template/header/header.component';
 import { SearchBookComponent } from './component/book/search-book/search-book.component';
 import { BookPaginationComponent } from './component/book/book-pagination/book-pagination.component';
 import { BookShowComponent } from './component/book/book-show/book-show.component';
+import { DashboardBookComponent } from './component/dashboards/dashboard-book/dashboard-book.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { BookShowComponent } from './component/book/book-show/book-show.componen
     HeaderComponent,
     SearchBookComponent,
     BookPaginationComponent,
-    BookShowComponent
+    BookShowComponent,
+    DashboardBookComponent
   ],
   imports: [
     BrowserModule,

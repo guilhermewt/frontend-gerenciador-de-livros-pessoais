@@ -1,3 +1,4 @@
+import { ExceptionsService } from './../../exception/exception-services/exceptions.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from '../../book/books-model/Book.model';
@@ -12,7 +13,8 @@ import { Loan } from '../loan.model';
 })
 export class LoanComponent implements OnInit{
 
-  constructor(private bookService:BookService,private router:Router,private activedRouter:ActivatedRoute,private loanService:LoanService){}
+  constructor(private bookService:BookService,private router:Router,private activedRouter:ActivatedRoute,private loanService:LoanService,
+  private exception:ExceptionsService){}
 
   book!:Book
 
@@ -22,6 +24,10 @@ export class LoanComponent implements OnInit{
     endOfLoan:'',
     addressee:''
   }
+
+  statusBook:string[] = ['LER','LIDO','LENDO']
+
+  statusToUpdateBook:string = this.statusBook[0]
 
   ngOnInit(): void {
     const id = this.activedRouter.snapshot.paramMap.get('id');
@@ -39,6 +45,22 @@ export class LoanComponent implements OnInit{
       
     }
 
+  }
+
+  deleteLoan():void{
+    this.updateBook()
+    const id = this.activedRouter.snapshot.paramMap.get('id');
+    this.loanService.deleteLoan(id).subscribe(data => {
+      this.exception.showMensage('emprestimo apagado','operação bem sucedida','')
+      this.ngOnInit()
+    })
+  }
+
+  updateBook():void{
+    this.book.statusBook = this.statusToUpdateBook
+    this.bookService.update(this.book).subscribe(() => {
+      
+    })
   }
 
 }

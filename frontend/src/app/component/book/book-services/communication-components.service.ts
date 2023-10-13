@@ -1,6 +1,6 @@
 import { BookFilterComponent } from './../book-filter/book-filter.component';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Book } from '../books-model/Book.model';
 import { lastSearch } from '../books-model/lastSearch.model';
 
@@ -17,6 +17,21 @@ export class CommunicationComponentsService {
   private page = new BehaviorSubject<number>(1);
   private lastSearch = new BehaviorSubject<lastSearch>(new lastSearch(false,false,false,false,false));
   private numberToSearchBook = new BehaviorSubject<number>(-1);
+
+  private triggerNgOnInitSource = new Subject<void>();
+  triggerNgOnInit$ = this.triggerNgOnInitSource.asObservable();
+
+  private triggerClearMemoryObjectsSource = new Subject<void>();
+  clearMemoryObjects$ = this.triggerClearMemoryObjectsSource.asObservable();
+
+  triggerNgOnInit() {
+    this.triggerNgOnInitSource.next();
+  }
+
+  triggerClearMemory() {
+    this.triggerClearMemoryObjectsSource.next();
+  }
+
   getBook() {
     return this.bookSubject.asObservable();
   }

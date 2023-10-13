@@ -29,7 +29,7 @@ export class CreateUserComponent implements OnInit{
   constructor(private userdomainService:UserDomainService,private router:Router,private exception:ExceptionsService,private formBuilder: FormBuilder){
     this.myForm = this.formBuilder.group({
       name:['',[Validators.required]],
-      login: ['', [Validators.required, Validators.minLength(3)]],
+      login: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password:['',[Validators.required]]
       

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, map, Observable, ObservedValuesFromArray } from 'rxjs';
 import { ExceptionsService } from 'src/app/component/exception/exception-services/exceptions.service';
 import { Book, Genrers } from '../books-model/Book.model';
+import { statistics } from '../../dashboards/dashboard-book/models/statistics.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,14 @@ export class BookService {
   baseUrl = '/api/';
 
   constructor(private http:HttpClient, private exceptions:ExceptionsService) { }
+
+  getBookStatistics():Observable<statistics>{
+    const url = `${this.baseUrl}/books/get-books-statistics`;
+    return this.http.get<statistics>(url).pipe(
+      map(obj => obj),
+      catchError(e => this.exceptions.defaultBadException(''))
+    );
+  }
 
   read():Observable<Book[]>{
     return this.http.get<Book[]>(`${this.baseUrl}/books/all`).pipe(
@@ -85,7 +94,7 @@ export class BookService {
     const url = `${this.baseUrl}books`;
     return this.http.put<Book>(url,livro).pipe(
       map(obj => obj),
-      catchError(e => this.exceptions.defaultBadException(''))
+      catchError(e => this.exceptions.throwException(e,'Livro'))
     );
   }
 

@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="text-center">
+    <h1>Estatísticas</h1>
+  </div>
+  <div *ngIf="bookStatistics != undefined">
+   <h5 class="text-center"> Total De Livros: {{bookStatistics.numberOfBooks}}</h5>
+  </div>
+  
+  <div class="configBookStatus" *ngIf="bookStatistics != undefined">
+    <div class="bookStatus float-left">
+      <div class="tag" style="background-color:dodgerblue"></div>
+      <p>Ler:{{ bookStatistics.numberOfBooksToRead}}</p>
+    </div>
+
+    <div class="bookStatus float-left">
+      <div class="tag" style="background-color:rgba(193, 9, 24, 0.811)"></div>
+      <p>Lido:{{ bookStatistics.numberOfBooksRead}}</p>
+    </div>
+
+    <div class="bookStatus float-left">
+      <div class="tag" style="background-color:rgba(234, 245, 10, 0.892)"></div>
+      <p>Lendo:{{ bookStatistics.amountBooksReading}}</p>
+    </div>
+
+    <div class="bookStatus">
+      <div class="tag" style="background-color:rgba(64, 193, 9, 0.901)"></div>
+      <p>Lido:{{ bookStatistics.numberBooksBorrowed}}</p>
+    </div>
+  </div>
+
+  <div class="config-circles">
+    <div class="box">
+      <div class="box-circle">
+        <svg class="circle1">
+          <circle  cx="30" cy="30" r="30"></circle>
+          <circle  [attr.stroke-dasharray]="strokeDasharray" #bookToReadCircleProgress cx="30" cy="30" r="30"></circle>
+        </svg>
+      </div>
+      <div class="number">{{ bookToReadPercentage }}%</div>
+  </div> 
+
+  <div class="box" >
+    <div class="box-circle">
+      <svg class="circle2">
+        <circle  cx="30" cy="30" r="30"></circle>
+        <circle  [attr.stroke-dasharray]="strokeDasharray" #bookReadCircleProgress cx="30" cy="30" r="30"></circle>
+      </svg>
+    </div>
+    <div class="number">{{ bookReadPercentage }}%</div>
+</div>
+
+<div class="box" >
+  <div class="box-circle">
+    <svg class="circle3">
+      <circle  cx="30" cy="30" r="30"></circle>
+      <circle  [attr.stroke-dasharray]="strokeDasharray" #bookReadingCircleProgress cx="30" cy="30" r="30"></circle>
+    </svg>
+  </div>
+  <div class="number">{{ bookReadingPercentage }}%</div>
+</div>
+
+<div class="box" >
+  <div class="box-circle">
+    <svg class="circle4">
+      <circle  cx="30" cy="30" r="30"></circle>
+      <circle  [attr.stroke-dasharray]="strokeDasharray" #booksBorrowedCircleProgress cx="30" cy="30" r="30"></circle>
+    </svg>
+  </div>
+  <div class="number">{{ booksBorrowedPercentage }}%</div>
+</div>
+  </div>
+
+    
+
+</div>
+
+
+
+
+
+
+
+
+  

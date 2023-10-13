@@ -12,8 +12,13 @@ import { AuthGuardService } from './component/auth/auth-services/auth-guard.serv
 import { ChangePasswordComponent } from './component/user/change-password/change-password.component'
 import { CreateUserComponent } from './component/user/create-user/create-user.component'
 import { BookFilterComponent } from './component/book/book-filter/book-filter.component';
+import { DashboardBookComponent } from './component/dashboards/dashboard-book/dashboard-book.component';
 
 const routes: Routes = [
+  {
+    path:'dashboard-book',
+    component:DashboardBookComponent
+  },
   {
     path:'filterBooks',
     component:BookFilterComponent

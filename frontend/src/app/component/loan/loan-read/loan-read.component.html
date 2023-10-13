@@ -40,6 +40,7 @@
               <p>data do emprestimo: {{loan.startOfTheLoan | date}}</p>
               <p>data da devolução:{{loan.endOfLoan | date}}</p>
               <p>emprestado para: {{loan.addressee}}</p>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#update-status-book">Deletar Empréstimo</button>
            </div>
 
            <div *ngIf="book.statusBook != 'EMPRESTADO'">
@@ -53,16 +54,45 @@
           <div class="modal-dialog">
             <div class="modal-content style-modal">
               
-              <!-- cabecalho -->
               <div class="modal-header"> 
                 <button type="button" class="close" style="color:white" data-dismiss="modal">
                   <span>&times;</span>
                 </button>
               </div>
   
-              <!-- corpo -->
               <div class="modal-body"> 
                <app-loan-create></app-loan-create>
+              </div>
+  
+            </div>
+          </div>
+  
+        </form>
+
+        <form class="modal fade" id="update-status-book" ngbModal>
+          <div class="modal-dialog">
+            <div class="modal-content style-modal">
+              
+              
+
+              <div class="modal-header"> 
+                <h4 class="modal-title">Atualize o status do livro</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                  <span>&times;</span>
+                </button>
+               
+              </div>
+  
+              <div class="modal-body"> 
+                <div class="form-group pl-0 text-center">
+                  <label for="status" class="mb-0">status</label>
+                  <select [(ngModel)]="statusToUpdateBook" name="statusToUpdateBook"  class="form-control">
+                      <option  *ngFor="let statusBook of statusBook" [ngValue]="statusBook">{{ statusBook }}</option>
+                  </select>
+                  
+                  <button type="button" class="btn btn-danger mt-1" (click)="deleteLoan()" data-dismiss="modal">Deletar</button>
+                 
+                </div>
               </div>
   
             </div>

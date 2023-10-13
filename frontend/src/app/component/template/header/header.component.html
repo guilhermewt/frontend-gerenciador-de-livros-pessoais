@@ -8,13 +8,11 @@
       
         <div class="collapse navbar-collapse" id="navbarHeader">
           
-          <ul class="navbar-nav m-auto" *ngIf="verifyIfShowMenuElements()">
+          <ul class="navbar-nav m-auto" *ngIf="showMenu">
             <app-search-book *ngIf="isPaginaEspecificaRoute()" class="configSearch"></app-search-book>
-           
-           
           </ul>
 
-          <ul class="navbar-nav ml-auto"*ngIf="!verifyIfShowMenuElements()">
+          <ul class="navbar-nav ml-auto"*ngIf="!showMenu">
             
             <li class="nav-item">
               <a href="https://github.com/guilhermewt/frontend-gerenciador-de-livros-pessoais" class="nav-link text-white">
@@ -26,8 +24,14 @@
               <a href="https://github.com/guilhermewt" class="nav-link text-white">Desenvolvedor</a>
             </li>
           </ul>
+
+          <ul class="navbar-nav ml-auto" *ngIf="showMenu">
+            <li class="nav-item">
+              <a href="" class="nav-link text-white" data-toggle="modal" data-target="#showDashboard-book">Estatisticas</a>
+            </li>
+          </ul>
       
-          <div class="dropdown btn-group " style="border-radius: 50%;" *ngIf="verifyIfShowMenuElements()">
+          <div class="dropdown btn-group " style="border-radius: 50%;" *ngIf="showMenu">
             <button class="btn bg-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
               <fa-icon [icon]="['fas','user']"></fa-icon>
             </button>
@@ -41,3 +45,24 @@
       </nav>
 
 </div>
+
+ <form class="modal fade" id="showDashboard-book" ngbModal>
+    <div class="modal-dialog">
+      <div class="modal-content style-modal">
+        
+        <!-- cabecalho -->
+        <div class="modal-header"> 
+          <button type="button" class="close" style="color:white" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+
+        <!-- corpo -->
+        <div class="modal-body"> 
+         <app-dashboard-book></app-dashboard-book>
+        </div>
+
+      </div>
+    </div>
+
+ </form>

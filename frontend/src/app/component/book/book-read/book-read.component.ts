@@ -55,6 +55,8 @@ export class BookReadComponent implements OnInit{
 
   
   ngOnInit(): void {
+    this.comunicationService.triggerNgOnInit();
+    
     this.livroService.readBookPageable(this.itemsPerPage,this.page - 1).subscribe((book) => {
       this.bookToShow = book.content
       this.totalItems = book.totalElements
@@ -67,6 +69,7 @@ export class BookReadComponent implements OnInit{
       }
     
     })
+
   }
   
   mostrar(page:string):void{

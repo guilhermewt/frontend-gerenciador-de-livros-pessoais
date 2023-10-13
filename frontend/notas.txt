@@ -1,25 +1,31 @@
 ==========front end==============
 
-(configurar a recuperacao de senha) layout botao cancelar
+* slide de amostra no login ok
+* logo ok
+* colocar a logica do isloading no component filter e search ok
+* validacao nos formulario update,create dos livros ok
+* botao search do autor ok
+* validacao emprestico create ok
+* bug: mostrar livro antigo ao clicar e depois carrega novo ok
+* arrumar o botao de sair e redefinir senha ok
+* mostrar navbar no login ok
+* cor da paginacao quando diminuir a tela as letras ficam pretas ok
+(bug: so esta salvando  o genero ler no create) ok
+* mostrar mensagem de 409 no usuario, livro, update ok
+* estatisticas ok
+* excluir os objetos da memoria ao sair ok
+* criar um botao de cancelar emprestimo ok
+* arrumar os bugs do dashboard ok
+* encontrar uma solucao para nao carregar o dashboard no login ok
+* bug: limpar a memoria do dash ao sair ok
+* toda vez que iniciar uma nova aba nao aparece as estatistica ok
+* error na porcentagem nao zerando ok
 
-* responsivel dos fontsize-title e buttons(jiophone),livros capa
-
-* arrumar layout dos formularios para transparente e os botoes mais escuros
-
-* arrumar layout ok
-
-* layout dos emprestimo tentar fazer um modal ok
-* salvar um loan ta ok so precisa criar condicao para mudar loan read assim que salva ok
-* filtrar por nome do author (pesquisar)
-* filtrar por generos(select)
-* arrumar services para se comunicar com api real
-* criar estatistica
-
-(cadastro de cliente)
+* depois de deletar o loan atualizar o status ok
 
 
 ==============backend=============
 
-- campo status em livro e endpoint para pegar livro pelo status
-
-- criar end point para trocar senhar ele vai receber uma string e comparar com a que esta no banco
+- estatisticas
+- configurar respostar 409
+- ao deletar o loan o livro tambem é deletado

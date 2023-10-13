@@ -7,6 +7,7 @@ import { Loan } from '../loan.model';
 import { LoanService } from '../loan-service/loan-service.service';
 import { LoanComponent } from '../loan-read/loan-read.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommunicationComponentsService } from '../../book/book-services/communication-components.service';
 
 @Component({
   selector: 'app-loan-create',
@@ -30,7 +31,7 @@ export class LoanCreateComponent implements OnInit{
   @ViewChild('button') button!: ElementRef;
 
   constructor(private loanRead:LoanComponent,private bookService:BookService,private router:Router,private activedRouter:ActivatedRoute,
-    private loanService:LoanService, private exceptions:ExceptionsService,private formBuilder: FormBuilder){
+    private loanService:LoanService, private exceptions:ExceptionsService,private formBuilder: FormBuilder,private communicationService:CommunicationComponentsService){
       this.loanForm = this.formBuilder.group({
         startOfTheLoan:['',[Validators.required]],
         endOfLoan: ['', [Validators.required]],
@@ -70,6 +71,7 @@ export class LoanCreateComponent implements OnInit{
       this.exceptions.showMensage('livro emprestado','operacao bem sucedida!','toast-sucess')
       this.loanRead.ngOnInit()
        this.router.navigate(['/loan/' + this.book.id])
+       this.communicationService.triggerNgOnInit();
     })
   }
   

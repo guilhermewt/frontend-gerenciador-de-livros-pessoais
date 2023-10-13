@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { BookService } from '../../book/book-services/book.service';
 import { BookReadComponent } from '../../book/book-read/book-read.component';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -14,11 +15,20 @@ import { BookReadComponent } from '../../book/book-read/book-read.component';
 })
 export class HeaderComponent implements OnInit{
 
+  showMenu!:Boolean
+
   constructor(private bookRead:BookReadComponent ,private livroService:BookService,private router:Router,
     private authService:AuthService,private appComponent:AppComponent
-   ) { }
+   ) {  }
   
     ngOnInit(): void {
+     
+  }
+
+  ngAfterViewInit() {
+    this.authService.showMenuEmitter.subscribe(show => {
+      this.showMenu = show;
+    });
   }
 
   isLarguraMaiorQue991: boolean = true;
@@ -29,10 +39,6 @@ export class HeaderComponent implements OnInit{
     this.isLarguraMaiorQue991 = window.innerWidth > 991;
   }
 
-  verifyIfShowMenuElements():Boolean{
-    return this.appComponent.showMenu
-  }
-
   isPaginaEspecificaRoute(): boolean {
     return this.router.url.includes('/home');
   }
@@ -41,4 +47,6 @@ export class HeaderComponent implements OnInit{
     this.authService.clear();
     this.router.navigate(['/login'])
   }
+
+  
 }

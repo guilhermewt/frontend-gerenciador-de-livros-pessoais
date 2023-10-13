@@ -1,3 +1,4 @@
+import { CommunicationComponentsService } from './../book-services/communication-components.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExceptionsService } from 'src/app/component/exception/exception-services/exceptions.service';
@@ -11,10 +12,10 @@ import { BookService } from '../book-services/book.service';
 })
 export class BookUpdateComponent implements OnInit{
 
-  constructor(private bookService:BookService,private activeRouter:ActivatedRoute,private router:Router,private exceptions:ExceptionsService){}
+  constructor(private bookService:BookService,private activeRouter:ActivatedRoute,private router:Router,private exceptions:ExceptionsService,private communicationService:CommunicationComponentsService){}
 
   book!:Book
-  statusBook:string[] = ['LIDO','LER','LENDO','EMPRESTADO'];
+  statusBook:string[] = ['LIDO','LER','LENDO'];
   genrers!:Genrers[]
 
   submitted = false;
@@ -36,8 +37,9 @@ export class BookUpdateComponent implements OnInit{
     }
     else{
       this.bookService.update(this.book).subscribe(() => {
-        this.exceptions.showMensage('produto atualizado','operação bem sucedida!','toast-sucess')
+        this.exceptions.showMensage('produto atualizado','operação bem sucedida!','toast-success')
         this.router.navigate(['/home'])
+        this.communicationService.triggerNgOnInit();
       })
     }
   }

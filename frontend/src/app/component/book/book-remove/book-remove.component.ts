@@ -1,3 +1,4 @@
+import { CommunicationComponentsService } from './../book-services/communication-components.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from '../books-model/Book.model'; 
@@ -11,7 +12,7 @@ import { BookService } from '../book-services/book.service';
 export class BookRemoveComponent implements OnInit{
 
   book!:Book
-  constructor(private bookService:BookService,private router:Router,private activeRouter:ActivatedRoute){}
+  constructor(private bookService:BookService,private router:Router,private activeRouter:ActivatedRoute,private communicationService:CommunicationComponentsService){}
 
   ngOnInit(): void {
     const id = this.activeRouter.snapshot.paramMap.get('id');
@@ -23,6 +24,7 @@ export class BookRemoveComponent implements OnInit{
   deleteBook():void{
     this.bookService.delete(this.book.id!).subscribe(() => {
       this.router.navigate(['/home'])
+      this.communicationService.triggerNgOnInit();
     })
   }
 

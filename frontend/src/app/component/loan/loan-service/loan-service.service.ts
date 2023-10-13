@@ -45,15 +45,20 @@ export class LoanService {
   }
 
   updateBook(id:string):void{
-    console.log(id)
-    //buscar livro para atualizar
     this.bookService.readById(id!).subscribe(book => {
         this.book = book
         this.book.statusBook = 'emprestado'
         this.bookService.update(this.book).subscribe(() => {})
         console.log(this.book)
       })
+  }
 
+  deleteLoan(id:any):Observable<Loan>{
+    const url = `${this.baseurl}loans/${id}`;
+    return this.http.delete<Loan>(url).pipe(
+      map(obj => obj),
+      catchError(e => this.exceptions.defaultBadException(''))
+    );
   }
 
 }
