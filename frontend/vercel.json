@@ -1,14 +1,4 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "dist/frontend",
-      "use": "@vercel/static-build"
-    }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/index.html" }
-  ],
   "rewrites": [
     { "source": "/api/:match*", "destination": "https://api-spring-book.onrender.com/:match*" }
 
