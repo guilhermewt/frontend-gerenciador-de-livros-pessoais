@@ -1,12 +1,14 @@
 .paginacao{
     margin-top: 20px;
     margin-left: 0;
+    color:#fff!important;
   
 }
 
 @media screen and (max-width:300px){
     .paginacao{
         font-size: 13px;
+        color:#fff!important;
     }
 
 }
@@ -15,10 +17,12 @@
     background: none;
     color:white;
     border: 1px solid rgba(9, 236, 236, 0.834);
+    color:#fff!important;
   }
 
   .config-style ::ng-deep .ngx-pagination > li > a:hover{
     background: none;
     color:white;
     border: 1px solid rgba(9, 236, 236, 0.834);
+    color:#fff!important;
   }

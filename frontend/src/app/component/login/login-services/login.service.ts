@@ -1,12 +1,13 @@
 import { HttpBackend, HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable,EMPTY,map,catchError } from 'rxjs';
+import { Observable,EMPTY,map,catchError, Subscription} from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { RequestLogin } from '../login-models/requestLogin.model';
 import { responseLogin } from '../login-models/responseLogin.model';
 import { AuthService } from '../../auth/auth-services/auth.service';
 import { ExceptionsService } from '../../exception/exception-services/exceptions.service'
+import { data } from 'jquery';
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +31,10 @@ export class LoginService {
       catchError(e => this.exceptions.userNotFound(e)))
     .subscribe(data => {
         sessionStorage.setItem('token',data.token)
+        this.exceptions.showMensage('','Bem-vindo ao GBookLibrary','toast-success')
         this.router.navigate(['/home'])
       })
   }
+
 
 }

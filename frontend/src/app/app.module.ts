@@ -55,7 +55,7 @@ import { DashboardBookComponent } from './component/dashboards/dashboard-book/da
     NgxPaginationModule,
     FormsModule,
     FontAwesomeModule,
-    ToastrModule.forRoot({ positionClass: 'toast-bottom-right',
+    ToastrModule.forRoot({ positionClass: 'toast-top-right',
     preventDuplicates: true,}),
      BrowserAnimationsModule, 
      ReactiveFormsModule

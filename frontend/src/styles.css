@@ -17,7 +17,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1; /* Coloque a imagem de fundo atrás do conteúdo */
-    opacity: 0.5; /* Ajuste a opacidade (0.5 é um valor de exemplo, você pode ajustar) */
+    opacity: 0.9; /* Ajuste a opacidade (0.5 é um valor de exemplo, você pode ajustar) */
   }
 
 .input-transparent{

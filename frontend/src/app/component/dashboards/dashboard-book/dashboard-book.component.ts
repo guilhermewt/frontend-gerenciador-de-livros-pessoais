@@ -30,7 +30,9 @@ export class DashboardBookComponent implements OnInit{
 
 
   constructor(private bookService:BookService,private communicationService:CommunicationComponentsService,private authService:AuthService){
-
+	this.subscription = this.communicationService.triggerNgOnInit$.subscribe(() => {
+      this.ngOnInit();  // Simula o acionamento do ngOnInit novamente
+      });
   }
 
   ngOnInit() {
@@ -41,9 +43,7 @@ export class DashboardBookComponent implements OnInit{
       this.defineCircleInTemplate()
    
       })
-      this.subscription = this.communicationService.triggerNgOnInit$.subscribe(() => {
-      this.ngOnInit();  // Simula o acionamento do ngOnInit novamente
-      });
+      
     }
     
   }

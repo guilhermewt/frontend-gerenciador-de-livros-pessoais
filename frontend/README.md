@@ -1,27 +1,53 @@
-# Frontend
+# Sistema web de gestão de livros
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
+<div style="display: flex;">
+        <img src="https://github.com/guilhermewt/assets/blob/main/gestao%20de%20livros/front4.png" alt="Imagem 1" style="width: 60%;">
+        <img src="https://github.com/guilhermewt/assets/blob/main/gestao%20de%20livros/front8.png" alt="Imagem 2" style="width: 200px;">
+</div>
+    
+ Sistema de gerenciamento de livros que permite o controle e organização da biblioteca pessoal de um usuário. O sistema possui as seguintes funcionalidades:
 
-## Development server
+1. Adição de livros: Os usuários podem adicionar livros à sua biblioteca, fornecendo informações como título, autor, gênero, ano de publicação.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+2. Acompanhamento do status de leitura: O sistema permite que os usuários rastreiem o status de leitura de cada livro. Eles podem indicar se já leram o livro, se estão lendo no momento ou se ainda não começaram a leitura.
 
-## Code scaffolding
+3. Estatísticas de leitura: O sistema gera estatísticas sobre os livros lidos pelos usuários. Ele calcula o número total de livros lidos, o número de livros que ainda não foram lidos e o número de livros que estão sendo lidos no momento.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+4. Funcionalidade de empréstimo: Os usuários têm a opção de marcar livros como emprestados, indicando o nome da pessoa para quem o livro foi emprestado e a data prevista para a devolução. Isso ajuda a manter o controle dos livraos emprestados e a gerenciar os prazos de devolução.
 
-## Build
+5. Consulta de livros: O sistema permite que os usuários realizem consultas na biblioteca. Eles podem pesquisar livros por nome, gênero ou status de leitura (lidos, não lidos, lendo). Isso facilita a localização de livros específicos ou a visualização de uma lista de livros com determinadas características.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+   
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Guia
 
-## Running end-to-end tests
+- [Tecnologias utilizadas](#Tecnologias-utilizadas)
+- [Links](#Links)
+- [Como baixar o projeto](#Como-baixar-o-projeto)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+# Tecnologias utilizadas
+  - Angular versão 15
+  - Bootstrap 4.6
+  - Api de livros da google
+  - Api de gestão de livros
 
-## Further help
+# Links
+  ### Deploy:
+     bookg.vercel.app/
+  ### Api Gestão de Livros
+     https://api-spring-book.onrender.com/
+  ### Google Books Api
+     https://developers.google.com/books?hl=pt-br
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# Como baixar o projeto    
+
+### 1 - baixar
+     git clone git@github.com:guilhermewt/frontend-gerenciador-de-livros-pessoais.git
+
+### 2 - executar
+     npm start
+
+observações
+* As configurações do servidor esta no arquivo (proxy.conf.json)
+
